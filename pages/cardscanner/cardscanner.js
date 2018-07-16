@@ -224,6 +224,15 @@ export default class CardScanner {
   }
 }
 Page({
+  data: {
+    card: {
+      name: '',
+      comp: '',
+      phone: '',
+      title: '',
+      address: '',
+    },
+  },
   onLoad(options) {
     let that = this
     this.imgPath = options.imgPath
@@ -239,12 +248,40 @@ Page({
         })
       })
       .on('DecodeComplete', (res) => {
+        console.log(res);
         if (res.code == 0) {
           console.log(res.data)
+          var pages = getCurrentPages();
+          var currPage = pages[pages.length - 1];   //当前页面
+          var prevPage = pages[pages.length - 2];  //上一个页面
+          let card = this.data.card;
+          var data = res.data;
+          console.log(data);
+          console.log(data.hasOwnProperty('name'));
+          if (data.hasOwnProperty('name')) {
+
+            card.name = data.name[0];
+            console.log(data.name[0]);
+          }
+          if (data.hasOwnProperty('comp')) {
+            card.comp = data.comp[0];
+            console.log(data.comp[0]);
+          }
+          if (data.hasOwnProperty('phone')) {
+            card.phone = data.phone[0];
+          }
+          if (data.hasOwnProperty('title')) {
+            card.title = data.title[0];
+          }
+          if (data.hasOwnProperty('address')) {
+            card.address = data.address[0];
+          }
           wx.showModal({
             title: '',
             content: JSON.stringify(res.data),
           })
+          prevPage.setData({ card: card });
+          wx.navigateBack({})
         } else {
           console.log('解析失败：' + res.reason)
         }

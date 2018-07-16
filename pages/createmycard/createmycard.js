@@ -18,6 +18,7 @@ Page({
       other: '',
     },
     mycardId: 0,
+    imageSrc: "",
   },
   bindinputName(e) {
     let mycard = this.data.mycard;
@@ -51,18 +52,8 @@ Page({
   },
   //选择图像进行识别
   bindChooseImg(e) {
-    let scanner = this.cardScanner
-    wx.chooseImage({
-      count: 1,
-      sizeType: ['compressed'],
-      success: function (res) {
-        //未写接口
-        scanner.onImageChanged && scanner.onImageChanged(res.tempFilePaths[0])
-        scanner.setImage(res.tempFilePaths[0])
-      },
-      fail(e) {
-        console.error(e)
-      }
+    wx.navigateTo({
+      url: '../cardscanner/cardscanner',
     })
   },
   saveMycard() {
