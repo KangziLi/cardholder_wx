@@ -1,0 +1,37 @@
+<!--pages/createcard/createcard.wxml-->
+<view class="bg-gray2">
+  <form bindsubmit="formSubmit" bindreset="formReset">
+    <view class="card-form">
+      <view class="container">
+        <button class="btn-green" bindtap="bindChooseImg">图像识别</button>
+      </view>
+      <view class="card-formitem">
+        <view class="card-user">
+          <view class="sign">
+            <image src="{{cardData.data.avatarUrl}}"></image>
+          </view>
+          <view class="message">
+            <input placeholder="姓名" class="card-input" placeholder-class="gray3" maxlength="18" name="name" value="{{cardData.data.name}}" bindinput="cardDataName" />
+            <input placeholder="联系方式" class="card-input" placeholder-class="gray3" maxlength="20" type="number" name="mobile" value="{{cardData.data.mobile}}" bindinput="cardDataMobile" />
+          </view>
+        </view>
+      </view>
+      <view class="card-formitem">
+        <input placeholder="公司名称" class="card-input" placeholder-class="gray3" maxlength="20" name="companyName" value="{{cardData.data.companyName}}" bindinput="cardDataCompanyName" />
+        <input placeholder="职务名称" class="card-input" placeholder-class="gray3" maxlength="20" name="title" value="{{cardData.data.title}}" bindinput="cardDataTitle" />
+        <view class="card-inputlabel">
+          <text class="label green iconfont icon-location" bindtap="openAddress"></text>
+          <input value="{{cardData.data.address}}" placeholder="选入地址手动输入" placeholder-class="gray3" maxlength="40" name="address" class="card-input" />
+        </view>
+      </view>
+      <view class="card-formitem">
+        <view class="card-inputlabel">
+          <input placeholder="备注" placeholder-class="gray3" maxlength="40" name="more" value="{{cardData.data.more}}" class="card-input" bindinput="cardDataMore" />
+        </view>
+      </view>
+      <view class="container">
+        <button formType="submit" class="btn-green">保存</button>
+      </view>
+    </view>
+  </form>
+</view>

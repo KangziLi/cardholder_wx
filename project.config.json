@@ -1,0 +1,58 @@
+{
+	"description": "项目配置文件。",
+	"packOptions": {
+		"ignore": []
+	},
+	"setting": {
+		"urlCheck": false,
+		"es6": true,
+		"postcss": true,
+		"minified": false,
+		"newFeature": true
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.1.1",
+	"appid": "wxbb7ad66bdf803be3",
+	"projectname": "cardholder_wx",
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"currentL": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": -1,
+			"list": [
+				{
+					"id": -1,
+					"name": "login",
+					"pathName": "pages/auth/login",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "注册",
+					"pathName": "pages/auth/register/register",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "新建名片",
+					"pathName": "pages/createmycard/createmycard",
+					"query": ""
+				}
+			]
+		}
+	}
+}

@@ -1,0 +1,55 @@
+<import src="../template/template.wxml" />
+
+<view class="profile-info" bindtap="goLogin">
+  <image class="avatar" src="{{userInfo.avatarUrl}}"></image>
+  <view class="info">
+    <text class="name">{{userInfo.nickName}}</text>
+  </view>
+</view>
+
+
+<!--名片列表开始-->
+<view class="main bg-gray2">
+  <text class="listtext">我的名片</text>
+  <!--名片列表-->
+  <template is="card" data="{{myCardData}}" />
+  <view class="bg-gray2">
+    <navigator url="../carddetails/carddetails?id={{itemName.id}}&flag=0" d hover-class="none" wx:key="{{itemName}}" wx:for="{{myCardData}}" wx:for-index="index" wx:for-item="itemName">
+      <view class="card-item">
+        <view class="card-moren" wx:if="{{itemName.isDefault}}">
+          <text class="green iconfont icon-moren"></text>
+        </view>
+        <view class="card-head">
+          <view class="title">
+            <view class="name">{{itemName.name}}</view>
+            <view class="label">{{itemName.title}}</view>
+          </view>
+          <view class="sign">
+            <image src="{{itemName.avatarUrl}}" />
+          </view>
+        </view>
+        <view class="card-content">
+          <view>
+            <view class="phone">
+              <text class="iconfont icon-shoujiyanzheng green"> {{itemName.phone}}</text>
+            </view>
+            <view class="name ">
+            </view>
+            <view wx:if="{{itemName.comp!=''}}">
+              <text class="gray3 iconfont icon-yanzheng">{{itemName.comp}}</text>
+            </view>
+            <view class="customcontent gray4" wx:if="{{itemName.other==''}}">
+              没有更多介绍
+            </view>
+            <view class="customcontent gray4" wx:else>
+              {{itemName.other}}
+            </view>
+          </view>
+        </view>
+      </view>
+    </navigator>
+  </view>
+
+
+  <button class="btn-green" bindtap='openCreatecard'>创建名片</button>
+</view>

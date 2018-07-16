@@ -1,0 +1,39 @@
+<!--pages/createcard/createcard.wxml-->
+<view class="bg-gray2">
+  <form bindsubmit="formSubmit" bindreset="formReset">
+    <view class="card-form">
+      <view class="container">
+        <button class="btn-green" bindtap="bindChooseImg">图像识别</button>
+      </view>
+      <view class="card-formitem">
+        <view class="card-user">
+          <!--
+          <view class="sign">
+            <image src="{{mycardData.data.avatarUrl}}"></image>
+          </view>
+          -->
+          <view class="message">
+            <input placeholder="姓名" class="card-input" placeholder-class="gray3" maxlength="18" name="name" value="{{mycard.name}}" bindinput="bindinputName" />
+            <input placeholder="联系方式" class="card-input" placeholder-class="gray3" maxlength="20" type="number" name="mobile" value="{{mycard.phone}}" bindinput="bindinputMobile" />
+          </view>
+        </view>
+      </view>
+      <view class="card-formitem">
+        <input placeholder="公司名称" class="card-input" placeholder-class="gray3" maxlength="20" name="companyName" value="{{mycard.comp}}" bindinput="bindinputCompany" />
+        <input placeholder="职务名称" class="card-input" placeholder-class="gray3" maxlength="20" name="title" value="{{mycard.title}}" bindinput="bindinputTitle" />
+        <view class="card-inputlabel">
+          <text class="label green iconfont icon-location" bindtap="openAddress"></text>
+          <input value="{{mycard.address}}" placeholder="选入地址手动输入" placeholder-class="gray3" maxlength="40" name="address" class="card-input" bindinput="bindinputAddress"/>
+        </view>
+      </view>
+      <view class="card-formitem">
+        <view class="card-inputlabel">
+          <input placeholder="备注" placeholder-class="gray3" maxlength="40" name="more" value="{{mycard.other}}" class="card-input" bindinput="bindinputOther" />
+        </view>
+      </view>
+      <view class="container">
+        <button bindtap="saveMycard" class="btn-green">保存</button>
+      </view>
+    </view>
+  </form>
+</view>
