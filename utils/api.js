@@ -19,4 +19,5 @@ module.exports = {
   CardDetail: WxApiRoot + 'card/detail',//名片信息
 
   CardTest: WxApiRoot + 'card/test',//测试
+  OCR: WxApiRoot + 'card/ocr',//测试
 };

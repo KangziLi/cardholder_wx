@@ -55,7 +55,8 @@
 				{
 					"id": -1,
 					"name": "名片夹",
-					"pathName": "pages/cardcase/cardcase"
+					"pathName": "pages/cardcase/cardcase",
+					"query": ""
 				}
 			]
 		}

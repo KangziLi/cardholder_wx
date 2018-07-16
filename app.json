@@ -10,7 +10,8 @@
     "pages/logs/logs",
     "pages/auth/login/login",
     "pages/auth/register/register",
-    "pages/auth/reset/reset"
+    "pages/auth/reset/reset",
+    "pages/cardscanner/cardscanner"
   ],
   "window": {
     "backgroundTextStyle": "dark",
