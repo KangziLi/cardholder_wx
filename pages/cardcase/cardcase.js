@@ -1,33 +1,11 @@
-// pages/cardcase/cardcase.js
-var app = getApp()
+var api = require('../../utils/api.js');
+var util = require('../../utils/util.js');
+var user = require('../../utils/user.js');
+var app = getApp();
 
 Page({
   data: {
     CardData:[],
-    lastX: 0,
-    lastY: 0,
-    text: "没有滑动",
-    touchDotX: 0,
-    touchDotY: 0,
-    istouch: true,
-    green: false,
-    slideselecgroup: false,
-    selectedgroup: [],
-    selecgroup: [],
-    setgroup: [],
-    isselecgroup: true,
-    ismovebtn: false,
-    hidden: false,
-    isaddgroupinput: true,
-    nocancel: false,
-    tip: '',
-    buttonDisabled: false,
-    modalHidden: true,
-    show: false,
-    isSearch: false,
-    cardcasedata: {},
-    currenttab: 0,
-    isbindCompanyId: false,
   },
 
   getCardData: function () {
@@ -35,14 +13,13 @@ Page({
     let that = this;
     util.request(api.CardList).then(function (res) {
       if (res.errno === 0) {
-        console.log(res.data);
         that.setData({
-          CardData: res.data
+          CardData: res.data,
         });
-      }
+      };
     })
-    console.log(res.data)
   },
+
   /*
   //切换tab
   swiperTab: function (e) {
@@ -482,12 +459,16 @@ Page({
     })
   },
   onLoad: function (e) {
-    var that = this
-    that.getUserCardData(that, 1, '')
   },
   onShow: function () {
-    var that = this
-    that.getUserCardData(that, that.data.userCardData.data.sortType, '')
+    if (app.globalData.hasLogin) {
+      let userInfo = wx.getStorageSync('userInfo');
+      this.setData({
+        userInfo: userInfo,
+      });
+    }
+    console.log("start get data")
+    this.getCardData();
   },
   canvasIdErrorCallback: function (e) {
     console.error(e.detail.errMsg)

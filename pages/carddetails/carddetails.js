@@ -47,16 +47,16 @@ Page({
                   address: '',
                   other: '',
                 });
-                wx.navigateTo({
-                  url: '../../mycard/mycard',
+                wx.switchTab({
+                  url: '/pages/mycard/mycard',
                 })
               }
             });
           } else {
-            util.request(api.CardDelete, { id: this.data.id }, 'POST').then(function (res) {
+            util.request(api.CardDelete, { id: did}, 'POST').then(function (res) {
               if (res.errno === 0) {
-                wx.navigateTo({
-                  url: 'pages/cardcase/cardcase',
+                wx.switchTab({
+                  url: '/pages/cardcase/cardcase',
                 })
               }
             });
@@ -303,7 +303,8 @@ Page({
         }
       });
     } else {
-      util.request(api.CardDetail, { id: option.id }).then(function (res) {
+      console.log("this.data.flag=1");
+      util.request(api.CardDetail, { id: options.id }).then(function (res) {
         if (res.errno === 0) {
           console.log("get detail success")
           that.setData({

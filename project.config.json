@@ -32,7 +32,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 3,
 			"list": [
 				{
 					"id": -1,
@@ -51,6 +51,11 @@
 					"name": "新建名片",
 					"pathName": "pages/createmycard/createmycard",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "名片夹",
+					"pathName": "pages/cardcase/cardcase"
 				}
 			]
 		}

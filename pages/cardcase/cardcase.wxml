@@ -40,7 +40,7 @@
 </modal>
 -->
 <view class="cardcase">
-  <view class="searchgroup" >
+  <view class="searchgroup">
     <view class="searchgroup-inputitem">
       <text class="iconfont icon-sousuo_sousuo"></text>
       <input bindinput="getSearchData" placeholder-class="gray3" placeholder="搜索" focus="true" />
@@ -67,43 +67,25 @@
     </view>
   </view>
   -->
-  <view class="cardcase-group" wx:for="{{cardcasedata}}" wx:key="{{itemName}}" wx:for-index="index" wx:for-item="itemName">
-    <view class="cardcase-groupid" wx:if="{{userCardData.data.sortType===3}}">
-      <checkbox-group class="checkboxgroup" bindchange="checkboxChange" wx:if="{{itemName.name!='公司资源'&&itemName.items.length!=0&&!isselecgroup}}" data-id="{{index}}">
-        <label class="checkboxgroup">
-          <checkbox value="{{item.name}}" checked="{{itemName.checked}}" />
-        </label>
-      </checkbox-group>
-      <text wx:if="{{itemName.name=='公司资源'}}"><text wx:if="{{isbindCompanyId}}">公司资源 </text></text>
-      <text wx:else>{{itemName.name}}</text>
-    </view>
-    <view class="cardcase-groupid" wx:else>
-      {{itemName.name}}
-    </view>
-    <view class="cardB-item" wx:for="{{itemName.items}}" wx:key="{{item}}" wx:for-index="itemsindex" wx:for-item="item" bindtouchmove="handleMove" bindtouchstart="handleStart" data-id="{{item.id}}" data-name="{{itemName.name}}">
-      <view class="searchgroup-left" wx:if="{{!isselecgroup&&userCardData.data.sortType===3}}">
-        <checkbox-group bindchange="checkboxChange2" wx:if="{{!isselecgroup&&userCardData.data.sortType===3&&itemName.name!='公司资源'}}" data-id="{{item.id}}" data-index="{{index}}">
-          <checkbox value="{{item.name}}" checked="{{item.checked}}" />
-        </checkbox-group>
+  <view class="cardcase-group">
+    <navigator url="../carddetails/carddetails?id={{itemName.id}}&flag=1" class="cardB-item" wx:for="{{CardData}}" wx:key="{{itemName}}" wx:for-index="index" wx:for-item="itemName">
+      <view class="cardB-mark" catchtap="handleSkip" data-id="{{itemName.id}}">
+        <image src="{{itemName.avatarUrl}}"></image>
       </view>
-      <view class="cardB-mark" catchtap="handleSkip" data-id="{{item.id}}">
-        <image src="{{item.avatarUrl}}"></image>
-      </view>
-      <view class="cardB-content" catchtap="handleSkip" data-id="{{item.id}}">
-        <view class="name">{{item.name}}</view>
-        <view class="subtitle">{{item.companyName}}</view>
+      <view class="cardB-content" catchtap="handleSkip" data-id="{{itemName.id}}">
+        <view class="name">{{itemName.name}}</view>
+        <view class="subtitle">{{itemName.comp}}</view>
       </view>
       <view class="cardB-right">
         <view>
-          <text bindtap="phoneCall" data-id="{{item.mobile}}" class="iconfont icon-dianhua green"></text>
+          <text bindtap="phoneCall" data-id="{{itemName.phone}}" class="iconfont icon-dianhua green"></text>
         </view>
       </view>
-      <view wx:if="{{isselecgroup&&item.radio&&itemName.name!='公司资源'}}" class="cardB-movebtn" bindtap="showSelectGroupPop">
-        <text data-id="{{item.id}}"> 移动</text>
-      </view>
-    </view>
+    </navigator>
   </view>
-  <view class="hint" wx:if="{{cardcasedata.length=='0'}}">
-    没有更多了~
-  </view>
+</view>
+
+
+<view class="hint" wx:if="{{CardData.length=='0'}}">
+  没有更多了~
 </view>

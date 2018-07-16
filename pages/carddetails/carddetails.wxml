@@ -52,86 +52,17 @@
         <text wx:else> {{other}}</text>
       </view>
     </view>
-   
+
     <view>
       <view class="btn-group mb">
-        <button class="btn-groupitem" bindtap="deleteCard" >删除名片</button>
+        <button class="btn-groupitem" bindtap="deleteCard">删除名片</button>
       </view>
       <button class="btn-white mb" bindtap="editCard" data-id="{{cardDetailsData.id}}">编辑名片</button>
+      <!--
       <button class="btn-green mb " data-id="{{cardDetailsData.id}}" bindtap="openShare">
         <text> 扫码添加通讯录</text>
       </button>
+      -->
     </view>
-    <!--
-    <view wx:elif="{{isshare}}">
-      <button class="btn-white mb" bindtap="openMycard" wx:if="{{cardDetailsData.hasCollect}}">
-        打开蚁管家名片
-      </button>
-      <view wx:else>
-        <button class="btn-green mb" bindtap="addCardOpen" data-id="{{cardDetailsData.id}}">
-          <text>加入名片夹</text>
-        </button>
-        <button class="btn-white mb" bindtap="openMycard">
-          打开名片
-        </button>
-      </view>
-      <button class="btn-white mb " data-id="{{cardDetailsData.id}}" bindtap="openShare">
-        <text class="green"> 扫码添加通讯录</text>
-      </button>
-    </view>
-
-    <view wx:else>
-            <button class="btn-green mb" data-id="{{cardDetailsData.id}} " bindtap="openShare">
-          <text> 扫码添加通讯录</text>
-        </button>
-        <button class="btn-white mb" bindtap="openMycard">
-          打开名片
-        </button>
-        <button class="btn-white mb" wx:if="{{cardDetailsData.hasCollect}}" bindtap="undockCard" data-id="{{cardDetailsData.id}}">
-          <text>移除名片夹</text>
-        </button>
-        <button wx:else class="btn-white mb" bindtap="addCard" data-id="{{cardDetailsData.id}}">
-          <text>加入名片夹</text>
-        </button>
-    </view>
-
---!>
-      <!--<view wx:if="{{isshare}} ">
-        <button class="btn-white mb " bindtap="openMycard " wx:if="{{cardDetailsData.hasCollect}} ">
-          打开蚁管家名片
-        </button>
-        <view wx:else>
-          <button class="btn-green mb " bindtap="addCardOpen " data-id="{{cardDetailsData.id}} ">
-            <text>加入名片夹</text>
-          </button>
-          <button class="btn-white mb " bindtap="openMycard ">
-            打开蚁管家名片
-          </button>
-        </view>
-        <button class="btn-white mb " data-id="{{cardDetailsData.id}} " bindtap="openShare ">
-          <text class="green "> 扫码添加通讯录</text>
-        </button>
-      </view>
-      <view wx:else>
-        <button class="btn-green mb " data-id="{{cardDetailsData.id}} " bindtap="openShare ">
-          <text> 扫码添加通讯录</text>
-        </button>
-        <button class="btn-white mb " bindtap="openMycard ">
-          打开蚁管家名片
-        </button>
-        <button class="btn-white mb " wx:if="{{cardDetailsData.hasCollect}} " bindtap="undockCard " data-id="{{cardDetailsData.id}} ">
-          <text>移除名片夹</text>
-        </button>
-        <button wx:else class="btn-white mb " bindtap="addCard " data-id="{{cardDetailsData.id}} ">
-          <text>加入名片夹</text>
-        </button>
-      </view>
-
-    <view class="card-prompt ">
-      <text>点击扫码添加通讯录，生成图片分享到朋友圈
-      </text>
-      <text> 点击右上角，分享我的名片页面
-      </text>
-    </view>-->
   </view>
 </view>

@@ -27,8 +27,8 @@
       {
         "pagePath": "pages/mycard/mycard",
         "text": "我的名片",
-        "iconPath": "images/card.png",
-        "selectedIconPath": "images/cardselected.png"
+        "iconPath": "images/me.png",
+        "selectedIconPath": "images/meselected.png"
       },
       {
         "pagePath": "pages/cardcase/cardcase",
@@ -39,8 +39,8 @@
       {
         "pagePath": "pages/createcard/createcard",
         "text": "添加名片",
-        "iconPath": "images/cardcase.png",
-        "selectedIconPath": "images/cardcaseselected.png"
+        "iconPath": "images/card.png",
+        "selectedIconPath": "images/cardselected.png"
       }
     ]
   }
