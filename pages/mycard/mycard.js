@@ -21,7 +21,7 @@ Page({
           myCardData: res.data
         });
       }
-    })
+    });
     console.log(res.data)
   },
 

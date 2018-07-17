@@ -1,11 +1,13 @@
 //app.js
+
 var util = require('./utils/util.js');
 var api = require('./utils/api.js');
 var user = require('./utils/user.js');
 
 App({
   onLaunch: function () {
-    //测试连通性
+
+    //测试后端连通性
     wx.request({
       url: api.CardTest,
       data: {},
@@ -14,12 +16,13 @@ App({
         'content-type': 'application/json'
       },
       success: function (res) {
-        console.log("CardTest success")
+        console.log("--------------!!!Connection success!!!--------------")
         console.log(res)
       }
     });
   },
   onShow: function (options) {
+    //检测是否登陆
     user.checkLogin().then(res => {
       this.globalData.hasLogin = true;
     }).catch(() => {
