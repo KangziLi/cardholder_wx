@@ -1,91 +1,67 @@
-<!--pages/cardcase/cardcase.wxml
-<view class="made" wx:if="{{ismovebtn}}" bindtouchstart="hideMade">
-</view>
-<!--
-<view class="swiper-tab">
-  <view class="swiper-tab-item  {{currenttab==0 ? 'active':''}}" data-current="0" bindtap="swiperTab">个人名片</view>
-  <view class="swiper-tab-item  {{currenttab==1 ? 'active':''}}" data-current="1" bindtap="swiperTab">企业名片</view>
-</view>
+<import src="../wxSortPickerView/wxSortPickerView.wxml" />
 
-<modal hidden="{{hidden}}" title="移动至" confirm-text="确定" cancel-text="取消" bindcancel="cancel" bindconfirm="confirm" no-cancel="{{nocancel}}">
-  <view class="selectgroup">
-    <view class="selectgroup-item" wx:for="{{cardgroup.data}}" wx:key="{{itemName}}" wx:for-index="index" wx:for-item="itemName" bindtap="selectGroup" data-id="{{itemName.id}}" wx:if="{{itemName.name=='公司资源 &&isbindCompanyId'}}">
-      <view class="selectgroup-content">
-        {{itemName.name}}
-        <text class="text-samll gray4">(无法移出，公司管理员可见)</text>
-      </view>
-      <view class="selectgroup-right" wx:if="{{itemName.select}}">
-        <text class="icon iconfont icon-dagou green"></text>
-      </view>
-    </view>
-    <view class="selectgroup-item" wx:for="{{cardgroup.data}}" wx:key="{{itemName}}" wx:for-index="index" wx:for-item="itemName" bindtap="selectGroup" data-id="{{itemName.id}}" wx:if="{{itemName.name!='公司资源'}}">
-      <view class="selectgroup-content">
-        {{itemName.name}}
-        <text catchtap="deleteGroup" data-name="{{itemName.name}}" data-index="{{index}}" data-id="{{itemName.id}}" class="iconfont icon-arrows_circle_minus" wx:if="{{itemName.name!='未分组'}}"></text>
-      </view>
-      <view class="selectgroup-right" wx:if="{{itemName.select}}">
-        <text class="icon iconfont icon-dagou green"></text>
-      </view>
-    </view>
-
-    <view class="selectgroup-item" bindtap="addGroup" wx:if="{{isaddgroupinput}}">
-      <view class="selectgroup-content">
-        <text class="iconfont icon-arrows_circle_plus"></text> 添加组
-      </view>
-    </view>
-    <view class="selectgroup-item" wx:else>
-      <input placeholder="" maxlength="8" value="" bindconfirm="getDddGroupName" bindblur="setDddGroupName" focus="true" />
-    </view>
-  </view>
-</modal>
--->
 <view class="cardcase">
   <view class="searchgroup">
     <view class="searchgroup-inputitem">
-      <text class="iconfont icon-sousuo_sousuo"></text>
-      <input bindinput="getSearchData" placeholder-class="gray3" placeholder="搜索" focus="true" />
+      <text class="iconfont icon-search icon"></text>
+      <input bindinput="getSearchData" placeholder-class="gray3" placeholder="请输入姓名、公司等进行搜索" focus="false" bindconfirm="getSearch" value='{{keyword}}' />
     </view>
+    <text class="iconfont icon-cancel icon" bindtap="clearKeyword" wx:if="{{ keyword.length > 0 }}"></text>
     <view class="searchgroup-right">
-      <text bindtap="showSearch">取消</text>
+      <text bindtap="getSearch" style='font-size:30rpx'>搜索</text>
     </view>
   </view>
-  <!--
-  <view class="searchgroup" wx:else>
-    <view class="searchgroup-item" bindtap="selectSortType">
-      <view wx:if="{{userCardData.data.sortType===0}}">
-        <text class="iconfont icon-shijian"></text>按时间
-      </view>
-      <view wx:if="{{userCardData.data.sortType===1}}">
-        <text class="iconfont icon-letter-a-outline"></text>按字母
-      </view>
-      <view wx:if="{{userCardData.data.sortType===2}}">
-        <text class="iconfont icon-gongsi"></text>按公司
-      </view>
-    </view>
-    <view class="searchgroup-item" bindtap="showSearch">
-      <text class="iconfont icon-sousuo_sousuo"></text> 搜索
-    </view>
-  </view>
-  -->
+  
+<view class="hint" wx:if="{{CardData.length==0}}">
+  无相关名片信息~
+</view>
   <view class="cardcase-group">
-    <navigator url="../carddetails/carddetails?id={{itemName.id}}&flag=1" class="cardB-item" wx:for="{{CardData}}" wx:key="{{itemName}}" wx:for-index="index" wx:for-item="itemName">
-      <view class="cardB-mark" catchtap="handleSkip" data-id="{{itemName.id}}">
-        <image src="{{itemName.avatarUrl}}"></image>
+      <scroll-view style="width:5%;" class="wxSortPickerViewTemTags">
+      <block wx:for="{{['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '#']}}" wx:for-item="item" wx:key="">
+        <view bindtap="wxSortPickerViewTemTagTap" data-tag="{{item}}" class="wxSortPickerViewTemTag">{{item}}</view>
+      </block>
+    </scroll-view>
+    <!--<navigator url="../carddetails/carddetails?id={{itemName.id}}&flag=1" class="cardB-item" wx:for="{{CardData}}" wx:key="{{itemName}}" wx:for-index="index" wx:for-item="itemName">
+        <navigator url="../carddetails/carddetails?id={{itemName.id}}&flag=1" class="cardB-item" wx:for="{{CardData}}" wx:key="{{itemName}}" wx:for-index="index" wx:for-item="itemName">
+      <view class="cardB-mark"  data-id="{{itemName.id}}">
+        <image src="../../images/man2.png"></image>
       </view>
-      <view class="cardB-content" catchtap="handleSkip" data-id="{{itemName.id}}">
+      <view class="cardB-content"  data-id="{{itemName.id}}">
         <view class="name">{{itemName.name}}</view>
         <view class="subtitle">{{itemName.comp}}</view>
       </view>
       <view class="cardB-right">
-        <view>
-          <text bindtap="phoneCall" data-id="{{itemName.phone}}" class="iconfont icon-dianhua green"></text>
+        <view >
+          <text bindtap="phoneCall" data-id="{{itemName.phone}} "style="color:#4285f5; font-size:60rpx; padding:5rpx;" class="iconfont icon-call"></text>
         </view>
       </view>
-    </navigator>
+    </navigator>-->
+
+
+    <scroll-view class="wxSortPickerViewList" scroll-y="true" style="height: 100%;width:95%" bindscrolltoupper="wxSortPickerViewUpper" bindscrolltolower="wxSortPickerViewLower" bindscroll="wxSortPickerViewScroll" scroll-into-view="{{wxSortPickerData.wxSortPickerViewtoView}}">
+
+
+      <view wx:for="{{wxSortPickerData.textData}}" wx:for-item="item" wx:key="">
+        <view id="{{item.tag}}" class="wxSortPickerViewTag" wx:if="{{item.textArray.length!=0}}">{{item.tag}}</view>
+
+        <navigator url="../carddetails/carddetails?id={{itemName.id}}&flag=1" class="cardB-item" wx:for="{{item.textArray}}" wx:for-item="itemName" wx:key="">
+
+          <view class="cardB-mark" data-id="{{itemName.id}}">
+            <image src="../../images/man2.png"></image>
+          </view>
+          <view class="cardB-content" data-id="{{itemName.id}}">
+            <view class="name">{{itemName.name}}</view>
+            <view class="subtitle">{{itemName.comp}}</view>
+          </view>
+          <view class="cardB-right">
+            <view>
+              <text bindtap="phoneCall" data-id="{{itemName.phone}} " style="color:#4285f5; font-size:60rpx; padding:5rpx;" class="iconfont icon-call"></text>
+            </view>
+          </view>
+        </navigator>
+      </view>
+
+    </scroll-view>
+
   </view>
-</view>
-
-
-<view class="hint" wx:if="{{CardData.length=='0'}}">
-  没有更多了~
 </view>

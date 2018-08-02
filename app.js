@@ -30,6 +30,8 @@ App({
     });
   },
   globalData: {
-    hasLogin: false
+    hasLogin: false,
+    deleteid:-1
   }
+
 })

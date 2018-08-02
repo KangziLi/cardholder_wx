@@ -2,19 +2,37 @@
 <view class="main bg-gray2">
   <view class="bg-gray2">
     <view>
-      <view class="card-item">
-        <view class="card-moren">
-          <text class="green iconfont icon-moren" wx:if="{{cardDetailsData.isDefault}}"></text>
-        </view>
+      <view class="card-item" style='height:auto'>
+       <image class="infobackground" src='../../images/infobackground2.png'></image>
+       <view style='padding:0 30rpx 30rpx 30rpx;'>
         <view class="card-head">
           <view class="title">
             <view class="name">{{name}}</view>
+            <view class="label">{{comp}}</view>
             <view class="label">{{title}}</view>
           </view>
+          <!--
           <view class="sign">
             <image src="{{avatarUrl}}" />
-          </view>
+          </view>-->
         </view>
+                  <view class="card-content">
+            <view class="infodetail">
+              <view class="phone" wx:if="{{phone!=''}}">
+                <text class="iconfont icon-call icon">  </text>
+                <text class="text">  {{phone}}</text>
+              </view>
+              <view class="address" wx:if="{{address!=''}}">
+                <text class="iconfont icon-position icon"></text> 
+                <text class="text">  {{address}}</text>
+              </view>
+              <view class="other" wx:if="{{other!=''}}">
+                <text class="iconfont icon-information icon"></text> 
+                <text class="text">  {{other}}</text>
+              </view>
+            </view>
+          </view>
+          <!--
         <view class="card-content">
           <view>
             <view class="phone" bindtap="phoneCall" data-id="{{phone}}">
@@ -32,10 +50,11 @@
           <view wx:else class="icon-code">
             <text class="iconfont icon-youcexiaochengxuerweima"></text>
           </view>
-        </view>
+        </view>-->
+</view>
       </view>
     </view>
-
+<!--
     <view class="card-attr">
 
       <view class="card-attritem">
@@ -52,12 +71,11 @@
         <text wx:else> {{other}}</text>
       </view>
     </view>
-
+-->
     <view>
-      <view class="btn-group mb">
-        <button class="btn-groupitem" bindtap="deleteCard">删除名片</button>
-      </view>
-      <button class="btn-white mb" bindtap="editCard" data-id="{{cardDetailsData.id}}">编辑名片</button>
+    <button class="btn-blue" bindtap='Sharecard'>发送名片</button>
+     <button class="btn-blue" bindtap="editCard" >编辑名片</button>
+      <button class="btn-blue" bindtap="deleteCard">删除名片</button>
       <!--
       <button class="btn-green mb " data-id="{{cardDetailsData.id}}" bindtap="openShare">
         <text> 扫码添加通讯录</text>
@@ -66,3 +84,4 @@
     </view>
   </view>
 </view>
+  <canvas canvas-id="myCanvas" class="myCanvas" hidden='{{!showcan}}'></canvas>

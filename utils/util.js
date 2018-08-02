@@ -23,6 +23,7 @@ function formatNumber(n) {
  */
 function request(url, data = {}, method = "GET") {
   return new Promise(function (resolve, reject) {
+
     wx.request({
       url: url,
       data: data,
@@ -36,6 +37,7 @@ function request(url, data = {}, method = "GET") {
         if (res.statusCode == 200) {
 
           if (res.data.errno == 501) {
+            console.log("501 ")
             // 清除登录相关内容
             try {
               wx.removeStorageSync('userInfo');
@@ -79,7 +81,7 @@ function redirect(url) {
 function showErrorToast(msg) {
   wx.showToast({
     title: msg,
-    image: '/static/images/icon_error.png'
+    image: '../../images/error.png'
   })
 }
 

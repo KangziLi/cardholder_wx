@@ -1,55 +1,57 @@
 <import src="../template/template.wxml" />
 
-<view class="profile-info" bindtap="goLogin">
-  <image class="avatar" src="{{userInfo.avatarUrl}}"></image>
-  <view class="info">
+<view class="profile-info">
+  <image src="{{userInfo.avatarUrl}}" class="avatar"></image>
+  <view class="info" bindtap="goLogin">
     <text class="name">{{userInfo.nickName}}</text>
   </view>
+  <!--<button class="logout" bindtap="exitLogin">退出登录</button>-->
 </view>
+<image class="infobackground" src='../../images/infobackground2.png'></image>
 
 
 <!--名片列表开始-->
 <view class="main bg-gray2">
-  <text class="listtext">我的名片</text>
-  <!--名片列表-->
+  <view class="listtext">我的名片</view>
+  <!--名片列表
   <template is="card" data="{{myCardData}}" />
-  <view class="bg-gray2">
+  <swiper  bindchange="bindChange" indicator-dots="true" style="height:500rpx" current ='{{current}}' wx:if="{{myCardData.length!=0}}" current-item-id="{{itemName.id}}">-->
+  <swiper bindchange="bindChange" indicator-dots="true" style="height:500rpx" current='{{current}}' wx:if="{{myCardData.length!=0}}">
     <navigator url="../carddetails/carddetails?id={{itemName.id}}&flag=0" d hover-class="none" wx:key="{{itemName}}" wx:for="{{myCardData}}" wx:for-index="index" wx:for-item="itemName">
-      <view class="card-item">
-        <view class="card-moren" wx:if="{{itemName.isDefault}}">
-          <text class="green iconfont icon-moren"></text>
-        </view>
-        <view class="card-head">
-          <view class="title">
-            <view class="name">{{itemName.name}}</view>
-            <view class="label">{{itemName.title}}</view>
-          </view>
-          <view class="sign">
-            <image src="{{itemName.avatarUrl}}" />
-          </view>
-        </view>
-        <view class="card-content">
-          <view>
-            <view class="phone">
-              <text class="iconfont icon-shoujiyanzheng green"> {{itemName.phone}}</text>
+      <swiper-item item-id="{{itemName.id}}">
+        <view class="card-item">
+          <image class="infobackground" src='../../images/infobackground2.png'></image>
+          <view style='padding:0rpx 30rpx 0rpx 30rpx;width:100%'>
+            <view class="card-head">
+              <view class="title">
+                <view class="name"> {{itemName.name}}</view>
+                <view class="label"> {{itemName.comp}}</view>
+                <view class="label"> {{itemName.title}}</view>
+              </view>
             </view>
-            <view class="name ">
-            </view>
-            <view wx:if="{{itemName.comp!=''}}">
-              <text class="gray3 iconfont icon-yanzheng">{{itemName.comp}}</text>
-            </view>
-            <view class="customcontent gray4" wx:if="{{itemName.other==''}}">
-              没有更多介绍
-            </view>
-            <view class="customcontent gray4" wx:else>
-              {{itemName.other}}
+            <view class="card-content">
+              <view class="infodetail">
+                <view class="phone">
+                  <text class="iconfont icon-call icon" wx:if="{{itemName.phone!=''}}">  </text>
+                  <text class="text">  {{itemName.phone}}</text>
+                </view>
+                <view class="address">
+                  <text class="iconfont icon-position icon" wx:if="{{itemName.address!=''}}"></text>
+                  <text class="text">  {{itemName.address}}</text>
+                </view>
+                <view class="other">
+                  <text class="iconfont icon-information icon" wx:if="{{itemName.other!=''}}"></text>
+                  <text class="text">  {{itemName.other}}</text>
+                </view>
+              </view>
             </view>
           </view>
         </view>
-      </view>
+      </swiper-item>
     </navigator>
-  </view>
-
-
-  <button class="btn-green" bindtap='openCreatecard'>创建名片</button>
+  </swiper>
+  <button class="btn-blue" bindtap='Sharecard'>递名片</button>
+  <button class="btn-blue" bindtap='openCreatecard'>新增我的名片
+  </button>
+  <canvas canvas-id="myCanvas" class="myCanvas" hidden='{{!showcan}}'></canvas>
 </view>

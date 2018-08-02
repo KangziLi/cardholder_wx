@@ -2,9 +2,11 @@
 // 本机开发时使用
 //var WxApiRoot = 'http://localhost:8080/';
 //局域网地址
-var WxApiRoot = 'http://172.16.242.24:8080/';
+//var WxApiRoot = 'http://172.16.242.24:8080/';
 //云服务器地址
-
+//var WxApiRoot = 'http://119.23.57.120:443/';
+//服务器域名地址
+var WxApiRoot = 'https://likangzi.cn/';
 
 module.exports = {
 
@@ -25,7 +27,7 @@ module.exports = {
   CardSave: WxApiRoot + 'card/save',  //增加名片
   CardDelete: WxApiRoot + 'card/delete',//删除名片
   CardDetail: WxApiRoot + 'card/detail',//名片信息
-
+  CardSearch: WxApiRoot + 'card/search',//名片搜索
   //其他
   CardTest: WxApiRoot + 'card/test',//测试
   OCR: WxApiRoot + 'card/ocr',//测试

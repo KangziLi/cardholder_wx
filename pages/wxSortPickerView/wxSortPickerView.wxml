@@ -1,0 +1,41 @@
+<template name="wxSortPickerView">
+  <scroll-view class="wxSortPickerViewList" scroll-y="true" style="height: {{wxSortPickerData.view.scrollHeight}}px;" bindscrolltoupper="wxSortPickerViewUpper" bindscrolltolower="wxSortPickerViewLower" bindscroll="wxSortPickerViewScroll" scroll-into-view="{{wxSortPickerData.wxSortPickerViewtoView}}">
+    <!--<view animation="{{wxSortPickerData.animationData}}" class="wxSortPickerViewList">-->
+    <!--<view class="wxSortPickerViewTag wxSortPickerViewFixedTag">{{wxSortPickerData.nowTag}}</view>-->
+    <view wx:for="{{wxSortPickerData.textData}}" wx:for-item="item" wx:key="">
+      <view id="{{item.tag}}" class="wxSortPickerViewTag" wx:if="{{item.textArray.length!=0}}">{{item.tag}}</view>
+      <template is="wxSortPickerViewItem" data="{{item}}" />
+
+
+    </view>
+    <!--</view>-->
+  </scroll-view>
+
+  <template is="wxSortPickerViewTemTags" />
+</template>
+
+<template name="wxSortPickerViewItem">
+  <navigator url="../carddetails/carddetails?id={{itemName.id}}&flag=1" class="cardB-item" wx:for="{{item.textArray}}" wx:for-item="itemName" wx:key="">
+
+    <view class="cardB-mark" data-id="{{itemName.id}}">
+      <image src="../../images/man2.png"></image>
+    </view>
+    <view class="cardB-content" data-id="{{itemName.id}}">
+      <view class="name">{{itemName.name}}</view>
+      <view class="subtitle">{{itemName.comp}}</view>
+    </view>
+    <view class="cardB-right">
+      <view>
+        <text bindtap="phoneCall" data-id="{{itemName.phone}} " style="color:#4285f5; font-size:60rpx; padding:5rpx;" class="iconfont icon-call"></text>
+      </view>
+    </view>
+  </navigator>
+</template>
+
+<template name="wxSortPickerViewTemTags">
+  <scroll-view style="width:20px;height: {{wxSortPickerData.view.scrollHeight}}px;" class="wxSortPickerViewTemTags">
+    <block wx:for="{{['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '#']}}" wx:for-item="item" wx:key="">
+      <view bindtap="wxSortPickerViewTemTagTap" data-tag="{{item}}" class="wxSortPickerViewTemTag">{{item}}</view>
+    </block>
+  </scroll-view>
+</template>

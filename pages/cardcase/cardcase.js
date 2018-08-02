@@ -1,25 +1,63 @@
 var api = require('../../utils/api.js');
 var util = require('../../utils/util.js');
 var user = require('../../utils/user.js');
+var wxSortPickerView = require('../wxSortPickerView/wxSortPickerView.js');
 var app = getApp();
 
 Page({
   data: {
-    CardData:[],
+    CardData: [],
+    keyword:"",
   },
 
-  getCardData: function () {
+  getCardData: function() {
     //获取我的名片数据
     let that = this;
-    util.request(api.CardList).then(function (res) {
+    util.request(api.CardList).then(function(res) {
       if (res.errno === 0) {
         that.setData({
           CardData: res.data,
         });
+        wxSortPickerView.init(that.data.CardData, that)
       };
     })
   },
+  //获取搜索数据
+  getSearchData: function (e) {
+    let k = e.detail.value;
+    this.setData({ keyword: k });
+    console.log(this.data.keyword);
+  },
 
+  clearKeyword: function (e) {
+    this.setData({ keyword: "" });
+    this.getCardData();
+  },
+  getSearch:function(e){
+    let that=this;
+    if(this.data.keyword!=""){
+      util.request(api.CardSearch, {
+        keyword: this.data.keyword
+      }).then(function (res) {
+        if (res.errno === 0) {
+          that.setData({
+            CardData:res.data,
+          });
+          wxSortPickerView.init(that.data.CardData, that)
+        };
+      })
+    }
+    else{
+      this.getCardData()
+    }
+
+  },
+  //拨打电话
+  phoneCall: function (e) {
+    wx.makePhoneCall({
+      phoneNumber: e.target.dataset.id
+    })
+  },
   /*
   //切换tab
   swiperTab: function (e) {
@@ -39,20 +77,15 @@ Page({
       currenttab: that.data.currenttab
     })
   },
-  //拨打电话
-  phoneCall: function (e) {
-    wx.makePhoneCall({
-      phoneNumber: e.target.dataset.id //仅为示例，并非真实的电话号码
-    })
-  },*/
+
   //获取个人名片数据
-  getUserCardData: function (that, sortType, key) {
+  getUserCardData: function(that, sortType, key) {
     that.setData({
       ismovebtn: false,
       'userCardData.data.sortType': sortType,
       'userCardData.data.key': key
     })
-    app.postData(that.data.userCardData, function (res) {
+    app.postData(that.data.userCardData, function(res) {
       that.setData({
         cardcasedata: res.data
       })
@@ -62,9 +95,9 @@ Page({
             isbindCompanyId: true
           })
         }
-        that.data.cardcasedata.map(function (v, i) {
+        that.data.cardcasedata.map(function(v, i) {
           v.checked = false
-          v.items.map(function (v2, i2) {
+          v.items.map(function(v2, i2) {
             v2.checked = false
             v2.radio = false
           })
@@ -77,57 +110,53 @@ Page({
     })
   },
   //显示搜索
-  showSearch: function () {
+  showSearch: function() {
     var that = this
     that.setData({
       isSearch: !that.data.isSearch
     })
   },
-  //获取搜索数据
-  getSearchData: function (e) {
-    var that = this
-    that.getUserCardData(that, that.data.userCardData.data.sortType, e.detail.value)
-  },
+
   //切换排序类型
-  selectSortType: function () {
+  selectSortType: function() {
     var that = this
     wx.showActionSheet({
       itemColor: '#757575',
       itemList: ['按时间排序', '按字母排序', '按公司排序', '按分组排序'],
-      success: function (res) {
-        if (typeof (res.tapIndex) != 'undefined') {
+      success: function(res) {
+        if (typeof(res.tapIndex) != 'undefined') {
           that.setData({
             'userCardData.data.sortType': res.tapIndex
           })
           that.getUserCardData(that, res.tapIndex, '')
         }
       },
-      fail: function (res) {
+      fail: function(res) {
         console.log(res.errMsg)
       }
     })
   },
   //显示选择分组
-  showSelectGroup: function () {
+  showSelectGroup: function() {
     var that = this
     that.setData({
       isselecgroup: !that.data.isselecgroup
     })
   },
   //显示分组弹框
-  showSelectGroupPop: function () {
+  showSelectGroupPop: function() {
     var that = this
     that.setData({
       hidden: !that.data.hidden
     })
 
-    app.getData(that.data.cardgroup.url, function (res) {
+    app.getData(that.data.cardgroup.url, function(res) {
       that.setData({
         'cardgroup.data': res.data
       })
 
-      that.data.cardcasedata.map(function (v, i) {
-        v.items.map(function (v1, i1) {
+      that.data.cardcasedata.map(function(v, i) {
+        v.items.map(function(v1, i1) {
           if (v1.checked || v1.radio) {
             that.data.setgroup.push(v1.id)
             that.setData({
@@ -140,7 +169,7 @@ Page({
     })
   },
   //分组弹框 取消按钮
-  cancel: function (e) {
+  cancel: function(e) {
     var that = this
     that.setData({
       hidden: !that.data.hidden,
@@ -151,23 +180,22 @@ Page({
     that.getUserCardData(that, 3, '')
   },
   //分组弹框 确定按钮
-  confirm: function (e) {
+  confirm: function(e) {
     var that = this
     if (that.data.setGroup.data.gid == '') {
       wx.showToast({
         title: '请选择组',
         icon: 'success',
         duration: 2000,
-        complete: function () {
-        }
+        complete: function() {}
       })
     } else {
-      app.postData(that.data.setGroup, function (res) {
+      app.postData(that.data.setGroup, function(res) {
         wx.showToast({
           title: res.msg,
           icon: 'success',
           duration: 2000,
-          complete: function () {
+          complete: function() {
             that.setData({
               hidden: !that.data.hidden,
               setgroup: [],
@@ -182,12 +210,12 @@ Page({
     }
   },
   //多选
-  checkboxChange: function (e) {
+  checkboxChange: function(e) {
     var that = this
     if (e.detail.value.length === 1) {
       that.data.cardcasedata[e.currentTarget.dataset.id].checked = true
       that.data.cardcasedata[e.currentTarget.dataset.id].items
-        .map(function (v, i) {
+        .map(function(v, i) {
           v.checked = true
         })
       that.setData({
@@ -197,7 +225,7 @@ Page({
     } else {
       that.data.cardcasedata[e.currentTarget.dataset.id].checked = false
       that.data.cardcasedata[e.currentTarget.dataset.id].items
-        .map(function (v, i) {
+        .map(function(v, i) {
           v.checked = false
         })
       that.setData({
@@ -206,8 +234,8 @@ Page({
       })
     }
 
-    that.data.cardcasedata.map(function (v, i) {
-      v.items.map(function (v, i) {
+    that.data.cardcasedata.map(function(v, i) {
+      v.items.map(function(v, i) {
         if (v.checked == true) {
           that.setData({
             green: true,
@@ -218,14 +246,14 @@ Page({
 
   },
   //单选
-  checkboxChange2: function (e) {
+  checkboxChange2: function(e) {
     var that = this
     var a;
     var a1 = []
     var aitems = that.data.cardcasedata[e.currentTarget.dataset.index].items
     if (e.detail.value.length === 1) {
-      that.data.cardcasedata.map(function (v, i) {
-        v.items.map(function (v1, i1) {
+      that.data.cardcasedata.map(function(v, i) {
+        v.items.map(function(v1, i1) {
           if (v1.id === e.currentTarget.dataset.id) {
             v1.checked = true
           }
@@ -236,8 +264,8 @@ Page({
         cardcasedata: that.data.cardcasedata
       })
     } else {
-      that.data.cardcasedata.map(function (v, i) {
-        v.items.map(function (v1, i1) {
+      that.data.cardcasedata.map(function(v, i) {
+        v.items.map(function(v1, i1) {
           if (v1.id === e.currentTarget.dataset.id) {
             v1.checked = false
           }
@@ -248,14 +276,14 @@ Page({
       })
     }
 
-    that.data.cardcasedata.map(function (v, i) {
-      v.items.map(function (v1, i1) {
+    that.data.cardcasedata.map(function(v, i) {
+      v.items.map(function(v1, i1) {
         if (v1.checked || v1.radio) {
           a = v.items
         }
       })
     })
-    aitems.map(function (v, i) {
+    aitems.map(function(v, i) {
       if (v.checked) {
         a1.push(v.checked)
       }
@@ -274,7 +302,7 @@ Page({
       })
     }
 
-    if (typeof (a) == 'undefined') {
+    if (typeof(a) == 'undefined') {
       that.setData({
         green: false,
         cardcasedata: that.data.cardcasedata
@@ -282,9 +310,9 @@ Page({
     }
   },
   //移动某个分组
-  selectGroup: function (e) {
+  selectGroup: function(e) {
     var that = this
-    that.data.cardgroup.data.map(function (v, i) {
+    that.data.cardgroup.data.map(function(v, i) {
       v.select = false
       if (v.id == e.currentTarget.dataset.id) {
         if (v.select) {
@@ -300,7 +328,7 @@ Page({
     })
   },
   //删除分组
-  deleteGroup: function (e) {
+  deleteGroup: function(e) {
     var that = this
     var data = {
       'url': 'Card/DeleteGroup',
@@ -312,15 +340,15 @@ Page({
     wx.showModal({
       title: '提示',
       content: '是否确认删除  "' + e.currentTarget.dataset.name + '" ?',
-      success: function (res) {
+      success: function(res) {
         if (res.confirm) {
-          app.postData(data, function (res) {
+          app.postData(data, function(res) {
             wx.showToast({
               title: '删除成功',
               icon: 'success',
               duration: 2000,
-              complete: function () {
-                app.getData(that.data.cardgroup.url, function (res2) {
+              complete: function() {
+                app.getData(that.data.cardgroup.url, function(res2) {
                   that.setData({
                     'cardgroup.data': res2.data,
                   })
@@ -335,14 +363,14 @@ Page({
     })
   },
   //添加分组
-  addGroup: function () {
+  addGroup: function() {
     var that = this
     that.setData({
       isaddgroupinput: false
     })
   },
   //获取 新增分组名称
-  getDddGroupName: function (e) {
+  getDddGroupName: function(e) {
     var that = this
     if (e.detail.value != '') {
       var data = {
@@ -352,8 +380,8 @@ Page({
           'name': e.detail.value
         }
       }
-      app.postData(data, function (res) {
-        app.getData(that.data.cardgroup.url, function (res2) {
+      app.postData(data, function(res) {
+        app.getData(that.data.cardgroup.url, function(res2) {
           that.setData({
             'cardgroup.data': res2.data,
             isaddgroupinput: true
@@ -365,7 +393,7 @@ Page({
         title: '分组名不能为空',
         icon: 'success',
         duration: 2000,
-        complete: function () {
+        complete: function() {
           that.setData({
             isaddgroupinput: true
           })
@@ -373,14 +401,14 @@ Page({
       })
     }
   },
-  setDddGroupName: function (e) {
+  setDddGroupName: function(e) {
     var that = this
     that.setData({
       isaddgroupinput: true
     })
   },
   //滑动开始
-  handleStart: function (e) {
+  handleStart: function(e) {
     var that = this
     if (that.data.userCardData.data.sortType == 3 && that.data.isselecgroup) {
       if (e.currentTarget.dataset.name != '公司资源') {
@@ -393,7 +421,7 @@ Page({
 
   },
   //滑动过程中
-  handleMove: function (e) {
+  handleMove: function(e) {
     var that = this
 
     if (that.data.userCardData.data.sortType == 3 && that.data.isselecgroup) {
@@ -407,8 +435,8 @@ Page({
 
         if (Math.abs(X) > Math.abs(Y) && X > 0) {
           // right alert('向右')
-          that.data.cardcasedata.map(function (v, i) {
-            v.items.map(function (v2, i2) {
+          that.data.cardcasedata.map(function(v, i) {
+            v.items.map(function(v2, i2) {
               if (v2.id === e.currentTarget.dataset.id) {
                 v2.radio = false
               }
@@ -423,8 +451,8 @@ Page({
         if (Math.abs(X) > Math.abs(Y) && X < 0) {
           // right alert('向左')
           if (X < -50) {
-            that.data.cardcasedata.map(function (v, i) {
-              v.items.map(function (v2, i2) {
+            that.data.cardcasedata.map(function(v, i) {
+              v.items.map(function(v2, i2) {
                 v2.radio = false
                 if (v2.id === e.currentTarget.dataset.id) {
                   v2.radio = true
@@ -440,16 +468,16 @@ Page({
       }
     }
   },
-  handleSkip: function (e) {
+  handleSkip: function(e) {
     wx.navigateTo({
       url: '../carddetails/carddetails?id=' + e.currentTarget.dataset.id + '&type=1'
     })
   },
   //隐藏遮罩层
-  hideMade: function () {
+  hideMade: function() {
     var that = this
-    that.data.cardcasedata.map(function (v, i) {
-      v.items.map(function (v2, i2) {
+    that.data.cardcasedata.map(function(v, i) {
+      v.items.map(function(v2, i2) {
         v2.radio = false
       })
     })
@@ -457,20 +485,22 @@ Page({
       ismovebtn: false,
       cardcasedata: that.data.cardcasedata
     })
+  },*/
+
+  
+  onLoad: function() {
+    this.onShow();
   },
-  onLoad: function (e) {
-  },
-  onShow: function () {
+  onShow: function() {
     if (app.globalData.hasLogin) {
       let userInfo = wx.getStorageSync('userInfo');
       this.setData({
         userInfo: userInfo,
       });
     }
-    console.log("start get data")
     this.getCardData();
   },
-  canvasIdErrorCallback: function (e) {
+  canvasIdErrorCallback: function(e) {
     console.error(e.detail.errMsg)
   },
 })

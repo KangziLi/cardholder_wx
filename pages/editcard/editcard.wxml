@@ -1,0 +1,46 @@
+<!--pages/createcard/createcard.wxml-->
+<view class="bg-gray2">
+  <form bindsubmit="formSubmit" bindreset="formReset">
+    <view class="card-form">
+    <view class="container">
+      <view class="camera" bindtap="bindCamera">
+        <text class="iconfont icon-camera icon"> </text> 
+        <text class="cameratext">  拍摄名片</text>
+      </view>
+      <view class="image" bindtap="bindChooseImg">
+        <text class="iconfont icon-picture icon"> </text> 
+        <text class="imgtext">  相册选图</text>
+      </view>
+    </view>
+      <view class="card-formitem">
+        <view class="card-user">
+          <!--
+          <view class="sign">
+            <image src="{{mycardData.data.avatarUrl}}"></image>
+          </view>
+          -->
+          <view class="message">
+            <input placeholder="姓名" class="card-input" placeholder-class="gray3" maxlength="18" name="name" value="{{card.name}}" bindinput="bindinputName" />
+            <input placeholder="联系方式" class="card-input" placeholder-class="gray3" maxlength="20" type="number" name="mobile" value="{{card.phone}}" bindinput="bindinputMobile" />
+          </view>
+        </view>
+      </view>
+      <view class="card-formitem">
+        <input placeholder="公司名称" class="card-input" placeholder-class="gray3" maxlength="20" name="companyName" value="{{card.comp}}" bindinput="bindinputCompany" />
+        <input placeholder="职务名称" class="card-input" placeholder-class="gray3" maxlength="20" name="title" value="{{card.title}}" bindinput="bindinputTitle" />
+        <view class="card-inputlabel">
+         <text class="iconfont icon-position icon" bindtap="openAddress"></text>
+          <input value="{{card.address}}" placeholder="点击图标选入地址" placeholder-class="gray3" maxlength="40" name="address" class="card-input" bindinput="bindinputAddress"/>
+        </view>
+      </view>
+      <view class="card-formitem">
+        <view class="card-inputlabel">
+          <input placeholder="备注" placeholder-class="gray3" maxlength="40" name="more" value="{{card.other}}" class="card-input" bindinput="bindinputOther" />
+        </view>
+      </view>
+      <view >
+        <button bindtap="savecardcheck" class="btn-blue">保存</button>
+      </view>
+    </view>
+  </form>
+</view>

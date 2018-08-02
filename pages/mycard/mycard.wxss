@@ -1,56 +1,357 @@
 /* pages/mycard/mycard.wxss */
 @import "../template/template.wxss";
+/* pages/template/template.wxss */
+@import "../../iconfont/iconfont.wxss";
 
 .listtext {
   font-family: arial, sans-serif;
-  font-size: 15px;
-  letter-spacing: 2pt;
-  line-height: 2;
+  font:bold;
+  font-size: 40rpx;
+  letter-spacing: 6rpx;
+  color: #4285f5;
+  border-left-color: #4285f5;
+  border-left: 6rpx solid;
+  padding-left: 15rpx;
+  margin-bottom:25rpx;
 }
-
+.infodetail{
+  padding-left: 200rpx;
+  margin: 0;
+  width: 100%;
+  height:100%;
+  min-height: 120rpx;
+}
 .logout {
   text-align: left;
   color: wheat;
   font-size: 30rpx;
 }
 
-.profile-info {
+.infobackground {
   width: 100%;
-  height: 280rpx;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: flex-start;
-  padding: 0 30.25rpx;
-  background: #333;
+  height: 80rpx;
+  border: 0;
+    margin: 0;
+  padding: 0;
+}
+
+.profile-info {
+  width: auto;
+  height: 260rpx;
+  display: block;
+  background: #4285f5;
+  text-align: center
 }
 
 .profile-info .avatar {
-  height: 148rpx;
+  margin-bottom: 10rpx;
+  margin-top: 40rpx;
   width: 148rpx;
-  border-radius: 50%;
+  height: 148rpx;
+  border-radius: 50%
 }
 
 .profile-info .info {
-  flex: 1;
-  height: 85rpx;
-  padding-left: 31.25rpx;
-}
-
-.profile-info .name {
-  display: block;
   height: 45rpx;
-  line-height: 45rpx;
   color: #fff;
   font-size: 37.5rpx;
-  margin-bottom: 10rpx;
 }
 
-.profile-info .level {
+.logout {
+  height: 80rpx;
+  -moz-box-shadow: inset 0px 39px 0px -24px #7a8eb9;
+  -webkit-box-shadow: inset 0px 39px 0px -24px #7a8eb9;
+  box-shadow: inset 0px 39px 0px -24px #7a8eb9;
+  background-color: #637aad;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  border: 1px solid #314179;
+  display: inline-block;
+  cursor: pointer;
+  color: #fff;
+  font-family: Arial;
+  font-size: 15px;
+  padding: 6px 15px;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #7a8eb9;
+}
+
+.logout:hover {
+  background-color: #5972a7;
+}
+
+.logout:active {
+  position: relative;
+  top: 1px;
+}
+
+.btn-green{
+  color: #4285f5;
+  background: white;
+  border: 10rpx solid;
+  border-color: #4285f5;
+}
+
+
+.card-item {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: space-between;
+  padding: 42rpx;
+  background: #fff;
+  border: 2rpx solid #e0e0e0;
+  border-radius: 5rpx;
+  height: auto;
+  margin-bottom: 15rpx;
+  position: relative;
+}
+.card-item .card-head{
+  margin-top: 0;
+  height: 150rpx;
+}
+
+.card-moren {
+  position: absolute;
+  right: 0;
+  top: -2px;
+}
+
+.card-moren .iconfont {
+  font-size: 60rpx;
+}
+
+.card-head {
+  flex-basis: 100%;
+  display: flex;
+  justify-content: space-between;
+
+}
+
+.card-head .title .name {
+  font-size: 40rpx;
+  color: #212121;
   display: block;
-  height: 30rpx;
-  line-height: 30rpx;
-  margin-bottom: 10rpx;
-  color: #7f7f7f;
-  font-size: 30rpx;
+  padding-bottom: 8rpx;
+}
+
+.card-head .title .label {
+  font-size: 28rpx;
+}
+
+.card-head .sign {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 5rpx;
+}
+
+.card-head .sign image {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 5rpx;
+}
+
+.card-content {
+  flex-basis: 100%;
+  display: flex;
+  justify-content: space-between;
+  font-size: 28rpx;
+margin: 0;
+padding: 0;
+  min-height: 130rpx;
+  margin-bottom: 30rpx;
+}
+
+.card-content .name {
+  margin: 10rpx 0;
+}
+
+.card-content .icon {
+  color: #4285f5;
+  font-size: 34rpx;
+}
+.card-content .text {
+  color: #757575;
+  font-size: 26rpx;
+}
+
+
+
+.card-content .icon-code {
+  align-self: flex-end;
+}
+
+.card-content .icon-code .iconfont {
+  font-size: 50rpx;
+  color: #757575;
+}
+
+.card-attr {
+  background: #fff;
+  border: 1rpx solid #e0e0e0;
+  border-radius: 5rpx;
+  margin-bottom: 24rpx;
+  font-size: 28rpx;
+}
+
+.card-attr .card-attritem {
+  padding: 30rpx;
+  border-bottom: 1rpx solid #e0e0e0;
+}
+
+.card-attr .card-attritem .label {
+  color: #bdbdbd;
+}
+
+.card-attr .card-attritem:last-child {
+  border-bottom: 0;
+}
+
+.card-prompt {
+  text-align: center;
+  color: #bdbdbd;
+}
+
+.btn-group {
+  display: flex;
+}
+
+.btn-group .btn-groupitem {
+  flex: 1;
+  color: #757575;
+  background: #fff;
+  border: 1rpx solid #e0e0e0;
+}
+
+.btn-group .btn-groupitem::after {
+  border: 0;
+}
+
+.btn-group .btn-groupitem:first-child {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.btn-group .btn-groupitem:last-child {
+  border-left: 0;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.cardB-item {
+  border-top: 1rpx solid #e0e0e0;
+  padding: 26rpx 30rpx;
+  background: #fff;
+  display: flex;
+  font-size: 26rpx;
+  color: #bdbdbd;
+  position: relative;
+}
+
+.cardB-item:last-child {
+  border-bottom: 1rpx solid #e0e0e0;
+}
+
+.cardB-item .cardB-mark {
+  flex: 0 0 96rpx;
+  margin-right: 23rpx;
+}
+
+.cardB-item .cardB-mark image {
+  width: 96rpx;
+  height: 96rpx;
+  border-radius: 5rpx;
+  border: 1rpx solid #e0e0e0;
+  display: block;
+
+}
+
+.cardB-item .cardB-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.cardB-item .cardB-content .name {
+  font-size: 34rpx;
+  color: #212121;
+}
+
+.cardB-item .cardB-right {
+  display: flex;
+  align-items: center;
+}
+
+.cardB-item .cardB-right .iconfont {
+  font-size: 45rpx;
+}
+
+.cardB-item .cardB-right .btn {
+  background: #72a92c;
+  border: 1rpx solid #72a92c;
+  color: #fff;
+  border-radius: 5rpx;
+  font-size: 26rpx;
+  padding: 10rpx 20rpx;
+}
+
+.cardB-movebtn {
+  top: 0;
+  z-index: 9;
+  position: absolute;
+  right: 0;
+  color: #fff;
+  background: #72a92c;
+  height: 100%;
+  width: 135rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.made {
+  position: absolute;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0);
+  left: 0;
+  width: 100%;
+  z-index: 1;
+  height: 100%;
+}
+
+.mainpop {
+  position: absolute;
+  background: rgba(0, 0, 0, 0);
+  z-index: 999;
+  width: 100%;
+  height: 100%;
+}
+.main {
+  height: auto;
+}
+.btn-blue{
+  letter-spacing: 6rpx;
+  background: #4285f5;
+  color: white;
+  width: 80%;
+  height: 80rpx;
+  font-size: 35rpx;
+  text-align: center;
+  margin-top: 10rpx;
+}
+.card-item{
+  margin:0;
+  padding:0;
+}
+
+.card-item .card-head{
+  margin:0;
+  padding:0;
+}
+.myCanvas{
+  margin-top: 20rpx;
+  width: 100%;
+  height: 600px;
+  background: white;
 }

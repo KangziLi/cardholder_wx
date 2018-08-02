@@ -36,7 +36,7 @@ export default class CardScanner {
     wx.chooseImage({
       count: 1,
       sizeType: ['compressed'],
-      success: function (res) {
+      success: function(res) {
         scanner.onImageChanged && scanner.onImageChanged(res.tempFilePaths[0])
         scanner.setImage(res.tempFilePaths[0])
       },
@@ -57,7 +57,7 @@ export default class CardScanner {
   }
 
   on(action, callback) {
-    if (actionTypes.indexOf(action) > -1 && typeof (callback) === 'function') {
+    if (actionTypes.indexOf(action) > -1 && typeof(callback) === 'function') {
       this['on' + action] = callback
     }
     return this
@@ -234,8 +234,11 @@ Page({
     },
   },
   onLoad(options) {
+    console.log(options);
+    let flag = options.flag;
+
     let that = this
-    this.imgPath = options.imgPath
+    this.imgPath = options.path
     this.cardScanner = new CardScanner(this)
       .on('ImageChanged', (imgPath) => {
         that.imgPath = imgPath
@@ -250,40 +253,63 @@ Page({
       .on('DecodeComplete', (res) => {
         console.log(res);
         if (res.code == 0) {
-          console.log(res.data)
+          var count = 0;
           var pages = getCurrentPages();
-          var currPage = pages[pages.length - 1];   //当前页面
-          var prevPage = pages[pages.length - 2];  //上一个页面
+          var currPage = pages[pages.length - 1]; //当前页面
+          var prevPage = pages[pages.length - 2]; //上一个页面
           let card = this.data.card;
           var data = res.data;
-          console.log(data);
-          console.log(data.hasOwnProperty('name'));
           if (data.hasOwnProperty('name')) {
-
             card.name = data.name[0];
-            console.log(data.name[0]);
+            count += 1;
           }
           if (data.hasOwnProperty('comp')) {
             card.comp = data.comp[0];
-            console.log(data.comp[0]);
+            count += 1;
           }
           if (data.hasOwnProperty('phone')) {
-            card.phone = data.phone[0];
+            card.phone = data.phone[0].replace(/[^0-9]/ig, "");
+            count += 1;
+          }
+          if (!data.hasOwnProperty('phone') && data.hasOwnProperty('tel')) {
+            card.phone = data.tel[0].replace(/[^0-9]/ig, "");
+            count += 1;
           }
           if (data.hasOwnProperty('title')) {
             card.title = data.title[0];
+            count += 1;
           }
           if (data.hasOwnProperty('address')) {
             card.address = data.address[0];
+            count += 1;
           }
-          wx.showModal({
-            title: '',
-            content: JSON.stringify(res.data),
-          })
-          prevPage.setData({ card: card });
-          wx.navigateBack({})
+          if (flag == 1) {
+            prevPage.setData({
+              card: card
+            });
+          } else {
+            prevPage.setData({
+              mycard: card
+            });
+          }
+          if (count == 0) {
+            wx.showModal({
+              title: '提示',
+              content: '未解析出有效字段',
+              success:function(res){
+                if(res.confirm){
+                  wx.navigateBack({});
+                }
+              }
+            })
+          }
+          wx.navigateBack({});
         } else {
           console.log('解析失败：' + res.reason)
+          wx.showModal({
+            title: '提示',
+            content: '未解析出有效字段',
+          })
         }
         wx.hideLoading()
       })

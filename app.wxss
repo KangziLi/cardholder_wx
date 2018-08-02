@@ -9,7 +9,7 @@ page {
 }
 
 .container {
-  padding: 23rpx;
+  padding: 15rpx;
 }
 
 .main {

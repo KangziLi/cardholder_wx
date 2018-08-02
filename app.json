@@ -4,6 +4,7 @@
     "pages/cardcase/cardcase",
     "pages/carddetails/carddetails",
     "pages/createcard/createcard",
+    "pages/editcard/editcard",
     "pages/createmycard/createmycard",
     "pages/template/template",
     "pages/map/map",
@@ -23,25 +24,25 @@
   "tabBar": {
     "borderStyle": "white",
     "color": "#9b9b9b",
-    "selectedColor": "#72a92c",
+    "selectedColor": "#4285f5",
     "list": [
       {
         "pagePath": "pages/mycard/mycard",
         "text": "我的名片",
-        "iconPath": "images/me.png",
-        "selectedIconPath": "images/meselected.png"
+        "iconPath": "images/contact.png",
+        "selectedIconPath": "images/contactselected.png"
       },
       {
         "pagePath": "pages/cardcase/cardcase",
         "text": "名片夹",
-        "iconPath": "images/cardcase.png",
-        "selectedIconPath": "images/cardcaseselected.png"
+        "iconPath": "images/identity.png",
+        "selectedIconPath": "images/identityselected.png"
       },
       {
         "pagePath": "pages/createcard/createcard",
-        "text": "添加名片",
-        "iconPath": "images/card.png",
-        "selectedIconPath": "images/cardselected.png"
+        "text": "录入名片",
+        "iconPath": "images/add.png",
+        "selectedIconPath": "images/addselected.png"
       }
     ]
   }

@@ -19,6 +19,7 @@ let request = (base64Img, callback) => {
     },
     method: 'POST',
     success: function (res) {
+      console.log(res)
       let formatRes = _formatResult(res.data)
       if (formatRes) {
         if (callback.success)
@@ -29,6 +30,7 @@ let request = (base64Img, callback) => {
       }
     },
     fail: function (res) {
+      console.log(res)
       if (callback.fail)
         callback.fail()
     }
@@ -76,7 +78,7 @@ let _formatResult = (res) => {
       else if (itemName == '公司')
         key = 'comp'
       else if (itemName == '地址')
-        key = 'addr'
+        key = 'address'
       else if (itemName == '邮箱')
         key = 'email'
       else if (itemName == '手机')

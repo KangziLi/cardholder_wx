@@ -4,7 +4,7 @@
 		"ignore": []
 	},
 	"setting": {
-		"urlCheck": false,
+		"urlCheck": true,
 		"es6": true,
 		"postcss": true,
 		"minified": false,
@@ -32,7 +32,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 4,
 			"list": [
 				{
 					"id": -1,
@@ -57,6 +57,11 @@
 					"name": "名片夹",
 					"pathName": "pages/cardcase/cardcase",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "录入",
+					"pathName": "pages/createcard/createcard"
 				}
 			]
 		}

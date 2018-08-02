@@ -4,7 +4,7 @@
 .card-input {
   border-bottom: 1rpx solid #e0e0e0;
   padding: 23rpx 0;
-  font-size: 14px;
+  font-size: 28rpx;
   width: 100%;
 }
 
@@ -19,11 +19,11 @@
 .card-inputlabel .label {
   margin-right: 5rpx;
   padding: 23rpx 0;
-  font-size: 14px;
+  font-size: 28rpx;
 }
 
 .card-inputlabel .label.icon-location {
-  font-size: 20px;
+  font-size: 40rpx;
 }
 
 .card-formitem {
@@ -81,5 +81,51 @@
   color: #72a92c;
   border-radius: 5rpx;
   padding: 6rpx 22rpx;
-  font-size: 13px;
+  font-size: 26rpx;
+}
+.btn-blue{
+  letter-spacing: 6rpx;
+  background: #4285f5;
+  color: white;
+  width:80%;
+  height: 100rpx;
+  font-size: 40rpx;
+  margin-top: 30rpx;
+}
+.card-inputlabel .icon{
+  width:80rpx;
+  font-size: 40rpx;
+  text-align: center;
+ padding: 23rpx 0;
+ color: #4285f5;
+}
+.container{
+  display: flex;
+  height: 80rpx;
+  color:white;
+  font-size: 40rpx;
+  line-height: 100rpx;
+  background-color:#4285f5;
+justify-content:center;
+}
+.container .icon{
+  font-size: 60rpx;
+  padding: 10rpx;
+}
+.container .camera{
+  display: flex;
+  width:40%;
+  border-right:4rpx white solid;
+  align-items:center;
+ padding-right: 30rpx;
+  justify-content:center;
+}
+
+
+.container .image{
+  display: flex;
+  width: 40%;
+  justify-content:center;
+  align-items:center;
+  padding-left:20rpx;
 }

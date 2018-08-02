@@ -19,7 +19,7 @@
 .card-moren {
   position: absolute;
   right: 0;
-  top: -2px;
+  top: -4rpx;
 }
 
 .card-moren .iconfont {
@@ -33,13 +33,13 @@
 }
 
 .card-head .title .name {
-  font-size: 20px;
+  font-size: 40rpx;
   color: #212121;
   display: block;
 }
 
 .card-head .title .label {
-  font-size: 14px;
+  font-size: 28rpx;
 }
 
 .card-head .sign {
@@ -58,7 +58,7 @@
   flex-basis: 100%;
   display: flex;
   justify-content: space-between;
-  font-size: 14px;
+  font-size: 28rpx;
 }
 
 .card-content .name {
@@ -67,7 +67,7 @@
 
 .card-content .phone {
   color: #0ac7fd;
-  font-size: 17px;
+  font-size: 34rpx;
 }
 
 .card-content .icon-code {
@@ -75,7 +75,7 @@
 }
 
 .card-content .icon-code .iconfont {
-  font-size: 25px;
+  font-size: 50rpx;
   color: #757575;
 }
 
@@ -84,7 +84,7 @@
   border: 1rpx solid #e0e0e0;
   border-radius: 5rpx;
   margin-bottom: 24rpx;
-  font-size: 14px;
+  font-size: 28rpx;
 }
 
 .card-attr .card-attritem {
@@ -136,7 +136,7 @@
   padding: 26rpx 30rpx;
   background: #fff;
   display: flex;
-  font-size: 13px;
+  font-size: 26rpx;
   color: #bdbdbd;
   position: relative;
 }
@@ -166,7 +166,7 @@
 }
 
 .cardB-item .cardB-content .name {
-  font-size: 17px;
+  font-size: 34rpx;
   color: #212121;
 }
 
@@ -184,7 +184,7 @@
   border: 1rpx solid #72a92c;
   color: #fff;
   border-radius: 5rpx;
-  font-size: 13px;
+  font-size: 26rpx;
   padding: 10rpx 20rpx;
 }
 
