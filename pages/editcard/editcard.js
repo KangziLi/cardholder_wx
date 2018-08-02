@@ -1,4 +1,3 @@
-
 var api = require('../../utils/api.js');
 var util = require('../../utils/util.js');
 var user = require('../../utils/user.js');
@@ -59,7 +58,9 @@ Page({
   bindinputAddress(e) {
     let card = this.data.card;
     card.address = e.detail.value;
-    this.setData({ card: card });
+    this.setData({
+      card: card
+    });
   },
   //选择图像进行识别
   bindChooseImg(e) {
@@ -67,7 +68,7 @@ Page({
       count: 1,
       sourceType: ['album'],
       sizeType: ['compressed'],
-      success: function (res) {
+      success: function(res) {
         console.log(res.tempFilePaths[0])
         wx.navigateTo({
           url: '../cardscanner/cardscanner?path=' + res.tempFilePaths[0] + "&flag=1",
@@ -80,7 +81,7 @@ Page({
       count: 1,
       sizeType: ['compressed'],
       sourceType: ['camera'],
-      success: function (res) {
+      success: function(res) {
         console.log(res.tempFilePaths[0])
         wx.navigateTo({
           url: '../cardscanner/cardscanner?path=' + res.tempFilePaths[0] + "&flag=1",
@@ -96,13 +97,12 @@ Page({
       util.showErrorToast('请输入姓名');
       return false;
     }
-
     if (!check.isValidPhone(card.phone) && card.phone != "") {
       wx.showModal({
         title: '提示',
         content: '输入无效手机号,请进行检查，若为特殊号码，请点击忽略',
         cancelText: "忽略",
-        success: function (res) {
+        success: function(res) {
           console.log(res)
           if (!res.confirm) {
             that.savecard();
@@ -113,13 +113,48 @@ Page({
       that.savecard();
     }
   },
+  savecontact() {
+    let that = this;
+    var card = this.data.card;
+    console.log(card)
+    wx.addPhoneContact({
+      firstName: that.data.card.name,
+      mobilePhoneNumber: that.data.card.phone,
+      title: that.data.card.title,
+      organization: that.data.card.comp,
+      workAddressStreet: that.data.card.address,
+      remark: that.data.card.other,
+      success: function () {
+        wx.switchTab({
+          url: '/pages/cardcase/cardcase',
+        });
+      }
+    })
+  },
 
+  //清除页面信息
+  cleandata() {
+    let that = this;
+    var card = this.data.card;
+    card.id = 0;
+    card.name = '';
+    card.comp = '';
+    card.phone = '';
+    card.title = '';
+    card.address = '';
+    card.other = '';
+    that.setData({
+      card: card
+    });
+  },
+
+  //保存名片信息
   savecard() {
     let card = this.data.card;
     let that = this;
     let sflag = this.data.flag;
     let sid = this.data.id;
-    if (sflag==0) {
+    if (sflag == 0) {
       console.log("sflag=0save");
       util.request(api.MyCardSave, {
         id: sid,
@@ -154,11 +189,19 @@ Page({
         console.log(res);
         if (res.errno === 0) {
           wx.showModal({
-            title: '添加成功',
-            content: '将跳转至名片夹',
-          })
-          wx.switchTab({
-            url: '/pages/cardcase/cardcase',
+            title: '保存成功',
+            content: '是否加入手机通讯录',
+            success: function (res) {
+              if (res.confirm) {
+                that.savecontact()
+                that.cleandata()
+              } else {
+                that.cleandata()
+                wx.switchTab({
+                  url: '/pages/cardcase/cardcase',
+                });
+              }
+            }
           })
         }
       });
@@ -228,20 +271,20 @@ Page({
     // 页面关闭
   },
 
-  openAddress: function () {
+  openAddress: function() {
     var that = this
     let card = that.data.card;
     wx.chooseLocation({
-      success: function (res) {
+      success: function(res) {
         card.address = res.address;
         that.setData({
           card: card
         });
       },
-      fail: function (res) {
+      fail: function(res) {
         // fail
       },
-      complete: function (res) {
+      complete: function(res) {
         // complete
       }
     })
