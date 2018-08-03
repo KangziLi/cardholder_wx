@@ -3,31 +3,31 @@
   <view class="bg-gray2">
     <view>
       <view class="card-item" style='height:auto'>
-       <image class="infobackground" src='../../images/infobackground2.png'></image>
-       <view style='padding:0 30rpx 30rpx 30rpx;'>
-        <view class="card-head">
-          <view class="title">
-            <view class="name">{{name}}</view>
-            <view class="label">{{comp}}</view>
-            <view class="label">{{title}}</view>
-          </view>
-          <!--
+        <image class="infobackground" src='../../images/infobackground2.png'></image>
+        <view style='padding:0 30rpx 30rpx 30rpx;'>
+          <view class="card-head">
+            <view class="title">
+              <view class="name">{{name}}</view>
+              <view class="label">{{comp}}</view>
+              <view class="label">{{title}}</view>
+            </view>
+            <!--
           <view class="sign">
             <image src="{{avatarUrl}}" />
           </view>-->
-        </view>
-                  <view class="card-content">
+          </view>
+          <view class="card-content">
             <view class="infodetail">
               <view class="phone" wx:if="{{phone!=''}}">
                 <text class="iconfont icon-call icon">  </text>
                 <text class="text">  {{phone}}</text>
               </view>
               <view class="address" wx:if="{{address!=''}}">
-                <text class="iconfont icon-position icon"></text> 
+                <text class="iconfont icon-position icon"></text>
                 <text class="text">  {{address}}</text>
               </view>
               <view class="other" wx:if="{{other!=''}}">
-                <text class="iconfont icon-information icon"></text> 
+                <text class="iconfont icon-information icon"></text>
                 <text class="text">  {{other}}</text>
               </view>
             </view>
@@ -51,10 +51,10 @@
             <text class="iconfont icon-youcexiaochengxuerweima"></text>
           </view>
         </view>-->
-</view>
+        </view>
       </view>
     </view>
-<!--
+    <!--
     <view class="card-attr">
 
       <view class="card-attritem">
@@ -73,15 +73,17 @@
     </view>
 -->
     <view>
-    <button class="btn-blue" bindtap='Sharecard'>发送名片</button>
-     <button class="btn-blue" bindtap="editCard" >编辑名片</button>
+      <button class="btn-blue" bindtap='Sharecard'>发送本名片</button>
+      <button class="btn-blue" bindtap="editCard">编辑名片</button>
       <button class="btn-blue" bindtap="deleteCard">删除名片</button>
       <!--
       <button class="btn-green mb " data-id="{{cardDetailsData.id}}" bindtap="openShare">
         <text> 扫码添加通讯录</text>
       </button>
       -->
+      <button class="btn-blue" bindtap="qrcode">生成二维码</button>
     </view>
   </view>
 </view>
-  <canvas canvas-id="myCanvas" class="myCanvas" hidden='{{!showcan}}'></canvas>
+<canvas canvas-id="myCanvas" class="myCanvas" hidden='{{!showcan}}'></canvas>
+<canvas hidden="{{canvasHidden}}" style="width: 686rpx;height: 686rpx;background:#f1f1f1;" canvas-id="mycanvas" />

@@ -32,7 +32,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 4,
+			"current": 5,
 			"list": [
 				{
 					"id": -1,
@@ -61,7 +61,14 @@
 				{
 					"id": -1,
 					"name": "录入",
-					"pathName": "pages/createcard/createcard"
+					"pathName": "pages/createcard/createcard",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "录入",
+					"pathName": "pages/carddetails/carddetails",
+					"query": "id=130&flag=0"
 				}
 			]
 		}
