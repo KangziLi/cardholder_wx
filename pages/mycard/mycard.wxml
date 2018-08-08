@@ -17,7 +17,8 @@
   <template is="card" data="{{myCardData}}" />
   <swiper  bindchange="bindChange" indicator-dots="true" style="height:500rpx" current ='{{current}}' wx:if="{{myCardData.length!=0}}" current-item-id="{{itemName.id}}">-->
   <swiper bindchange="bindChange" indicator-dots="true" style="height:500rpx" current='{{current}}' wx:if="{{myCardData.length!=0}}">
-    <navigator url="../carddetails/carddetails?id={{itemName.id}}&flag=0" d hover-class="none" wx:key="{{itemName}}" wx:for="{{myCardData}}" wx:for-index="index" wx:for-item="itemName">
+    <navigator url="../carddetails/carddetails?id={{itemName.id}}&flag=0&name={{itemName.name}}&title={{itemName.title}}&comp={{itemName.comp}}&address={{itemName.address}}&phone={{itemName.phone}}&other={{itemName.other}}" d hover-class="none" wx:key="{{itemName}}"
+      wx:for="{{myCardData}}" wx:for-index="index" wx:for-item="itemName">
       <swiper-item item-id="{{itemName.id}}">
         <view class="card-item">
           <image class="infobackground" src='../../images/infobackground2.png'></image>
@@ -28,6 +29,7 @@
                 <view class="label"> {{itemName.comp}}</view>
                 <view class="label"> {{itemName.title}}</view>
               </view>
+
             </view>
             <view class="card-content">
               <view class="infodetail">
@@ -50,8 +52,9 @@
       </swiper-item>
     </navigator>
   </swiper>
+  <button class="btn-blue" open-type="share">转发</button>
   <button class="btn-blue" bindtap='Sharecard'>递名片</button>
-  <button class="btn-blue" bindtap='openCreatecard'>新增我的名片
-  </button>
+  <button class="btn-blue" bindtap='openCreatecard'>新增我的名片</button>
+
   <canvas canvas-id="myCanvas" class="myCanvas" hidden='{{!showcan}}'></canvas>
 </view>

@@ -22,9 +22,9 @@ Page({
     daddress: "",
     dphone: "",
     dother: "",
-    showcan:false,
-    current:0,
-    len:0
+    showcan: false,
+    current: 0,
+    len: 0
   },
 
   //获取我的名片数据
@@ -37,7 +37,7 @@ Page({
       if (res.errno === 0) {
         that.setData({
           myCardData: res.data,
-          len:res.data.length,
+          len: res.data.length,
         }, () => {
           console.log('赋值成功')
           console.log(that.data.myCardData);
@@ -53,7 +53,7 @@ Page({
       url: '../createmycard/createmycard'
     })
   },
-  getContent: function (str, l = 30) {
+  getContent: function(str, l = 30) {
     let len = 0;
     let index = 0;
     let content = [];
@@ -86,7 +86,7 @@ Page({
     this.setData({
       showcan: false
     });
-    let show=this.data.showcan;
+    let show = this.data.showcan;
     let that = this;
     var cur = this.data.current;
     var dname = this.data.myCardData[cur].name;
@@ -201,6 +201,31 @@ Page({
       })
     }, 2000);
   },
+  onShareAppMessage: function (){
+    let that = this;
+    var cur = this.data.current;
+    var did = this.data.myCardData[cur].id;
+    var dname = this.data.myCardData[cur].name;
+    var dtitle = this.data.myCardData[cur].title;
+    var dcomp = this.data.myCardData[cur].comp;
+    var daddress = this.data.myCardData[cur].address;
+    var dphone = this.data.myCardData[cur].phone;
+    var dother = this.data.myCardData[cur].other;
+    var path = '/pages/carddetails/carddetails?id=' + did + "&flag=0&name=" + dname + '&title=' + dtitle + '&comp=' + dcomp + '&address=' + daddress + '&phone=' + dphone + '&other=' + dother;
+    var title = '您好，我是' + dname + '，这是我的名片，请惠存';
+    console.log(path)
+    return {
+      title: title,
+      path: path,
+      success: (res) => {
+        console.log("转发成功", res);
+      },
+      fail: (res) => {
+        console.log("转发失败", res);
+      }
+    }
+
+  },
 
   bindChange: function(e) {
     this.setData({
@@ -209,14 +234,14 @@ Page({
     console.log(this.data.current)
   },
 
-  Sharecard: function (e) {
-    let that =this;
+  Sharecard: function(e) {
+    let that = this;
     wx.showModal({
       title: '提示',
       content: '生成名片图，长按可保存至手机相册或分享至微信聊天',
-      success: function (res) {
+      success: function(res) {
         if (res.confirm) {
-that.Drawcard();
+          that.Drawcard();
         }
       }
     })
@@ -261,7 +286,7 @@ that.Drawcard();
     this.setData({
       userInfo: userInfo,
     });
-  console.log("onload")
+    console.log("onload")
   },
   onReady: function() {
     // 页面渲染完成
@@ -270,12 +295,12 @@ that.Drawcard();
     // 页面显示
     //获取用户的登录信息
     this.setData({
-      current:0
+      current: 0
     })
     this.getmyCardData();
     var length = this.data.myCardData.length;
     this.setData({
-      len:length
+      len: length
     })
     if (app.globalData.hasLogin) {
       let userInfo = wx.getStorageSync('userInfo');

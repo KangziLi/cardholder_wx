@@ -44,7 +44,7 @@
       <view wx:for="{{wxSortPickerData.textData}}" wx:for-item="item" wx:key="">
         <view id="{{item.tag}}" class="wxSortPickerViewTag" wx:if="{{item.textArray.length!=0}}">{{item.tag}}</view>
 
-        <navigator url="../carddetails/carddetails?id={{itemName.id}}&flag=1" class="cardB-item" wx:for="{{item.textArray}}" wx:for-item="itemName" wx:key="">
+        <navigator url="../carddetails/carddetails?id={{itemName.id}}&flag=1&name={{itemName.name}}&title={{itemName.title}}&comp={{itemName.comp}}&address={{itemName.address}}&phone={{itemName.phone}}&other={{itemName.other}}" class="cardB-item" wx:for="{{item.textArray}}" wx:for-item="itemName" wx:key="">
 
           <view class="cardB-mark" data-id="{{itemName.id}}">
             <image src="../../images/man2.png"></image>

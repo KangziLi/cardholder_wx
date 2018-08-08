@@ -1,5 +1,5 @@
 <!--pages/carddetails/carddetails.wxml-->
-<view class="main bg-gray2" >
+<view class="main bg-gray2">
   <view class="bg-gray2">
     <view>
       <view class="card-item" style='height:auto'>
@@ -73,22 +73,27 @@
     </view>
 -->
     <view class="butunits">
+      <!--
       <view class="butunit"  bindtap='Sharecard'>
         <view class="iconfont icon-share icon"></view>
         <view>分享</view>
-      </view>
-      <view class="butunit" bindtap="qrcode">
+      </view>-->
+      <button class="butunit" open-type="share">
+        <view class="iconfont icon-share icon"></view>
+        <view>分享</view>
+      </button>
+      <button class="butunit" bindtap="qrcode">
         <view class="iconfont icon-scan icon"></view>
         <view>二维码</view>
-      </view>
-      <view class="butunit" bindtap="editCard">
+      </button>
+      <button class="butunit" bindtap="editCard">
         <view class="iconfont icon-edit icon"></view>
         <view>编辑</view>
-      </view>
-      <view class="butunit" bindtap="deleteCard">
+      </button>
+      <button class="butunit" bindtap="deleteCard">
         <view class="iconfont icon-delete icon"></view>
         <view>删除</view>
-      </view>
+      </button>
     </view>
   </view>
 </view>

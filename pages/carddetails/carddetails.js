@@ -473,7 +473,30 @@ Page({
       canvasHidden: true
     })
   },
+  onShareAppMessage: function () {
+    let that = this;
+    var did = this.data.id;
+    var dname = this.data.name;
+    var dtitle = this.data.title;
+    var dcomp = this.data.comp;
+    var daddress = this.data.address;
+    var dphone = this.data.phone;
+    var dother = this.data.other;
+    var path = '/pages/carddetails/carddetails?id=' + did + "&flag=0&name=" + dname + '&title=' + dtitle + '&comp=' + dcomp + '&address=' + daddress + '&phone=' + dphone + '&other=' + dother;
+    var title = '您好，我是' + dname + '，这是我的名片，请惠存';
+    console.log(path)
+    return {
+      title: title,
+      path: path,
+      success: (res) => {
+        console.log("转发成功", res);
+      },
+      fail: (res) => {
+        console.log("转发失败", res);
+      }
+    }
 
+  },
   onLoad: function (options) {
     console.log(options);
     this.setData({
@@ -526,8 +549,7 @@ Page({
 
     }
     */
-    console.log("onload complete");
-    console.log(that.data.comp);
+
   },
   onReady: function () {
     // 页面渲染完成

@@ -106,9 +106,12 @@
   justify-content: center;
  text-align:center;
  color:#4285f5;
+ padding: 0;
+
 }
 .butunit .icon{
 color:#4285f5;
 font-size:60rpx;
-
+padding: 0;
+height: 100rpx
 }
