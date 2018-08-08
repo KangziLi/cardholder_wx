@@ -1,5 +1,5 @@
 <!--pages/carddetails/carddetails.wxml-->
-<view class="main bg-gray2">
+<view class="main bg-gray2" >
   <view class="bg-gray2">
     <view>
       <view class="card-item" style='height:auto'>
@@ -72,16 +72,23 @@
       </view>
     </view>
 -->
-    <view>
-      <button class="btn-blue" bindtap='Sharecard'>发送本名片</button>
-      <button class="btn-blue" bindtap="editCard">编辑名片</button>
-      <button class="btn-blue" bindtap="deleteCard">删除名片</button>
-      <!--
-      <button class="btn-green mb " data-id="{{cardDetailsData.id}}" bindtap="openShare">
-        <text> 扫码添加通讯录</text>
-      </button>
-      -->
-      <button class="btn-blue" bindtap="qrcode">生成二维码</button>
+    <view class="butunits">
+      <view class="butunit"  bindtap='Sharecard'>
+        <view class="iconfont icon-share icon"></view>
+        <view>分享</view>
+      </view>
+      <view class="butunit" bindtap="qrcode">
+        <view class="iconfont icon-scan icon"></view>
+        <view>二维码</view>
+      </view>
+      <view class="butunit" bindtap="editCard">
+        <view class="iconfont icon-edit icon"></view>
+        <view>编辑</view>
+      </view>
+      <view class="butunit" bindtap="deleteCard">
+        <view class="iconfont icon-delete icon"></view>
+        <view>删除</view>
+      </view>
     </view>
   </view>
 </view>

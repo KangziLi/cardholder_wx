@@ -477,11 +477,16 @@ Page({
   onLoad: function (options) {
     console.log(options);
     this.setData({
-      id: options.id
+      id: options.id,
+      flag: options.flag,
+      name: options.name,
+      comp: options.comp,
+      phone: options.phone,
+      title: options.title,
+      address: options.address,
+      other: options.other,
     });
-    this.setData({
-      flag: options.flag
-    });
+    /*
     let that = this;
     if (options.flag == 0) {
       console.log("this.data.flag=0");
@@ -520,6 +525,7 @@ Page({
       });
 
     }
+    */
     console.log("onload complete");
     console.log(that.data.comp);
   },

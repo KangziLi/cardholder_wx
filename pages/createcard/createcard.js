@@ -153,6 +153,12 @@ Page({
   savecard() {
     var that = this;
     var card = this.data.card;
+    wx.setStorage({
+      key: "card",
+      data: card,
+    })
+    console.log(app.globalData.haslogin)
+    if (app.globalData.haslogin){
     util.request(api.CardSave, {
       id: card.id,
       name: card.name,
@@ -179,7 +185,7 @@ Page({
           }
         })
       }
-    });
+    });}
   },
 
   //打开地图进行选择
