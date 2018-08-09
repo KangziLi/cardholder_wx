@@ -4,6 +4,7 @@
     "pages/cardcase/cardcase",
     "pages/carddetails/carddetails",
     "pages/createcard/createcard",
+    "pages/sharecard/sharecard",
     "pages/editcard/editcard",
     "pages/createmycard/createmycard",
     "pages/template/template",

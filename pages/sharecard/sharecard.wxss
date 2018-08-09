@@ -1,0 +1,117 @@
+/* pages/carddetails/carddetails.wxss */
+@import "../template/template.wxss";
+
+.card-content {
+  flex-basis: 100%;
+  display: flex;
+  justify-content: space-between;
+  font-size: 28rpx;
+  margin: 0;
+  padding: 0;
+  min-height: 130rpx;
+  margin-bottom: 30rpx;
+}
+
+.myCanvas {
+  margin-top: 20rpx;
+  width: 100%;
+  height: 600px;
+  background: white;
+}
+
+.card-content .name {
+  margin: 10rpx 0;
+}
+
+.card-content .icon {
+  color: #4285f5;
+  font-size: 34rpx;
+}
+
+.card-content .text {
+  color: #757575;
+  font-size: 26rpx;
+}
+
+.infodetail {
+  padding-left: 200rpx;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  min-height: 120rpx;
+}
+
+.btn-blue {
+  letter-spacing: 6rpx;
+  background: #4285f5;
+  color: white;
+  width: 80%;
+  height: 80rpx;
+  font-size: 35rpx;
+  text-align: center;
+  margin-top: 30rpx;
+}
+
+.infobackground {
+  width: 100%;
+  height: 80rpx;
+  margin: 0;
+  padding: 0;
+  border-style: none;
+}
+
+.card-item {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: space-between;
+  background: #fff;
+  border: 1rpx solid #e0e0e0;
+  border-radius: 5rpx;
+  height: auto;
+  min-height: 380rpx;
+  margin-bottom: 15rpx;
+  position: relative;
+  margin: 0;
+  padding: 0;
+}
+
+.card-item .card-head {
+  margin-top: 0;
+  height: 150rpx;
+}
+
+.card-content {
+  flex-basis: 100%;
+  display: flex;
+  justify-content: space-between;
+  font-size: 28rpx;
+  margin: 0;
+  padding: 0;
+  min-height: 130rpx;
+  margin-bottom: 30rpx;
+}
+
+.butunits {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  margin: 60rpx 0 20rpx;
+  position:fixed;
+  bottom:20rpx;
+  left: 0;
+}
+
+.butunit {
+  width: 23%;
+  justify-content: center;
+ text-align:center;
+ color:#4285f5;
+ padding: 0;
+
+}
+.butunit .icon{
+color:#4285f5;
+font-size:60rpx;
+padding: 0;
+height: 100rpx
+}

@@ -16,6 +16,7 @@ Page({
       nickName: '授权登录',
       avatarUrl: '../../images/manwhite.png'
     },
+    did:0,
     dname: "",
     dtitle: "",
     dcomp: "",
@@ -29,18 +30,19 @@ Page({
 
   //获取我的名片数据
   getmyCardData: function() {
+    console.log("mycard.js getmyCardData 获取我的名片数据");
     var that = this;
-    var len = 0;
-    console.log("getmyCardData");
     util.request(api.MyCardList).then(function(res) {
+      console.log("我的名片数据");
       console.log(res);
       if (res.errno === 0) {
         that.setData({
           myCardData: res.data,
           len: res.data.length,
-        }, () => {
-          console.log('赋值成功')
-          console.log(that.data.myCardData);
+        })
+        wx.setStorage({
+          key: 'myCard',
+          data: res.data,
         })
       };
     })
@@ -48,12 +50,15 @@ Page({
 
   //跳转至个人名片创建
   openCreatecard: function() {
-    var that = this
+    console.log("mycard.js openCreatecard 跳转至个人名片创建");
     wx.navigateTo({
       url: '../createmycard/createmycard'
     })
   },
+
+  //长字符分割
   getContent: function(str, l = 30) {
+    console.log("mycard.js getContent 长字符分割");
     let len = 0;
     let index = 0;
     let content = [];
@@ -76,13 +81,13 @@ Page({
     return content
   },
 
+  //绘制名片图片
   Drawcard: function(e) {
-    console.log("share" + this.data.current)
+    console.log("mycard.js Drawcard 绘制名片图片");
     wx.showLoading({
       title: '正在生成图片',
       mask: true,
     })
-
     this.setData({
       showcan: false
     });
@@ -95,7 +100,6 @@ Page({
     var daddress = this.data.myCardData[cur].address;
     var dphone = this.data.myCardData[cur].phone;
     var dother = this.data.myCardData[cur].other;
-    console.log(ctx.width);
     var width = 360;
     var headx = 20;
     var heady = 60;
@@ -201,7 +205,10 @@ Page({
       })
     }, 2000);
   },
-  onShareAppMessage: function (){
+
+  //生成分享信息
+  onShareAppMessage: function() {
+    console.log("mycard.js  onShareAppMessage 生成分享信息");
     let that = this;
     var cur = this.data.current;
     var did = this.data.myCardData[cur].id;
@@ -211,7 +218,7 @@ Page({
     var daddress = this.data.myCardData[cur].address;
     var dphone = this.data.myCardData[cur].phone;
     var dother = this.data.myCardData[cur].other;
-    var path = '/pages/carddetails/carddetails?id=' + did + "&flag=0&name=" + dname + '&title=' + dtitle + '&comp=' + dcomp + '&address=' + daddress + '&phone=' + dphone + '&other=' + dother;
+    var path = '/pages/sharecard/sharecard?id=' + did + "&flag=0&name=" + dname + '&title=' + dtitle + '&comp=' + dcomp + '&address=' + daddress + '&phone=' + dphone + '&other=' + dother;
     var title = '您好，我是' + dname + '，这是我的名片，请惠存';
     console.log(path)
     return {
@@ -224,17 +231,18 @@ Page({
         console.log("转发失败", res);
       }
     }
-
   },
 
+  //监听名片切换事件
   bindChange: function(e) {
     this.setData({
       current: e.detail.current
     });
-    console.log(this.data.current)
   },
 
+  //生成名片图片
   Sharecard: function(e) {
+    console.log("mycard.js Sharecard 生成名片图片");
     let that = this;
     wx.showModal({
       title: '提示',
@@ -246,8 +254,10 @@ Page({
       }
     })
   },
+
   //退出登陆
   exitLogin: function() {
+    console.log("mycard.js exitLogin 退出登录");
     let that = this;
     wx.showModal({
       title: '',
@@ -258,9 +268,6 @@ Page({
           wx.removeStorageSync('token');
           wx.removeStorageSync('userInfo');
           app.globalData.hasLogin = false;
-          wx.navigateTo({
-            url: '/pages/auth/login/login',
-          });
         }
       }
     })
@@ -268,11 +275,17 @@ Page({
 
   //进入登录页面
   goLogin() {
+    console.log("mycard.js goLogin 进入登录页面");
+    console.log("app.globalData.hasLogin=" + app.globalData.hasLogin);
     if (!app.globalData.hasLogin) {
       wx.navigateTo({
         url: "/pages/auth/login/login"
       });
     } else {
+      let userInfo = wx.getStorageSync('userInfo');
+      this.setData({
+        userInfo: userInfo,
+      });    
       wx.showModal({
         title: '',
         content: '用户已登录',
@@ -281,34 +294,53 @@ Page({
   },
 
   onLoad: function(options) {
-    // 页面初始化 options为页面跳转所带来的参数
-    let userInfo = wx.getStorageSync('userInfo');
-    this.setData({
-      userInfo: userInfo,
+    //检测是否登陆
+    user.checkLogin().then(res => {
+      console.log("this.globalData.hasLogin = true")
+      app.globalData.hasLogin = true;
+    }).catch(() => {
+      console.log("this.globalData.hasLogin = false")
+      app.globalData.hasLogin = false;
     });
-    console.log("onload")
+    // 页面初始化 options为页面跳转所带来的参数
+    console.log("user.js onload")
+    console.log("app.globalData.hasLogin=" + app.globalData.hasLogin);
+    if(app.globalData.hasLogin){
+      let userInfo = wx.getStorageSync('userInfo');
+      this.setData({
+        userInfo: userInfo,
+      });      
+    }else{
+      //未登录获取本地数据
+      let localcard = wx.getStorageSync('myCard');
+      this.setData({
+        myCardData: localcard
+      })
+    }
   },
   onReady: function() {
+    console.log("user.js onready")
+    console.log(app.globalData.hasLogin)
     // 页面渲染完成
   },
   onShow: function() {
-    // 页面显示
+    console.log("user.js onshow")
+    //页面显示
     //获取用户的登录信息
     this.setData({
       current: 0
     })
-    this.getmyCardData();
-    var length = this.data.myCardData.length;
-    this.setData({
-      len: length
-    })
-    if (app.globalData.hasLogin) {
+    if (app.globalData.hasLogin){
       let userInfo = wx.getStorageSync('userInfo');
       this.setData({
         userInfo: userInfo,
       });
+      this.getmyCardData();
     }
-
+    var length = this.data.myCardData.length;
+    this.setData({
+      len: length
+    })
   },
   onHide: function() {
     // 页面隐藏

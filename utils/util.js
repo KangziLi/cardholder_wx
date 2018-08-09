@@ -45,10 +45,13 @@ function request(url, data = {}, method = "GET") {
             } catch (e) {
               // Do something when catch error
             }
+            console.log(app.globalData.hasLogin)
+            app.globalData.hasLogin=false;
+            console.log(app.globalData.hasLogin)
             // 切换到登录页面
-            wx.navigateTo({
-              url: '/pages/auth/login/login'
-            });
+            //wx.navigateTo({
+            //  url: '/pages/auth/login/login'
+            //});
           } else {
             resolve(res.data);
           }

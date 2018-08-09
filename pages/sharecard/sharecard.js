@@ -483,11 +483,7 @@ Page({
     var dphone = this.data.phone;
     var dother = this.data.other;
     var path = '/pages/sharecard/sharecard?id=' + did + "&flag=1&name=" + dname + '&title=' + dtitle + '&comp=' + dcomp + '&address=' + daddress + '&phone=' + dphone + '&other=' + dother;
-    if(this.data.flag==0){
-      var title = '您好，我是' + dname + '，这是我的名片，请惠存';
-    }else{
-      var title = '我向您转发了关于' + dname + '的名片信息';
-    }
+    var title = '我向您转发了关于' + dname + '的名片信息';
     console.log(path)
     return {
       title: title,

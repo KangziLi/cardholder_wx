@@ -9,6 +9,7 @@ const api = require('../utils/api.js');
  * Promise封装wx.checkSession
  */
 function checkSession() {
+  console.log("user.js wx.checkSession")
   return new Promise(function (resolve, reject) {
     wx.checkSession({
       success: function () {
@@ -25,6 +26,7 @@ function checkSession() {
  * Promise封装wx.login
  */
 function login() {
+  console.log("user.js wx.login")
   return new Promise(function (resolve, reject) {
     wx.login({
       success: function (res) {
@@ -45,7 +47,7 @@ function login() {
  * 调用微信登录
  */
 function loginByWeixin(userInfo) {
-
+  console.log("user.js loginByWeixin")
   return new Promise(function (resolve, reject) {
     return login().then((res) => {
       //登录远程服务器
@@ -72,6 +74,7 @@ function loginByWeixin(userInfo) {
  * 判断用户是否登录
  */
 function checkLogin() {
+  console.log("user.js checkLogin")
   return new Promise(function (resolve, reject) {
     if (wx.getStorageSync('userInfo') && wx.getStorageSync('token')) {
       checkSession().then(() => {

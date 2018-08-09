@@ -1,0 +1,107 @@
+<!--pages/carddetails/carddetails.wxml-->
+<view class="main bg-gray2">
+  <view class="bg-gray2">
+    <view>
+      <view class="card-item" style='height:auto'>
+        <image class="infobackground" src='../../images/infobackground2.png'></image>
+        <view style='padding:0 30rpx 30rpx 30rpx;'>
+          <view class="card-head">
+            <view class="title">
+              <view class="name">{{name}}</view>
+              <view class="label">{{comp}}</view>
+              <view class="label">{{title}}</view>
+            </view>
+            <!--
+          <view class="sign">
+            <image src="{{avatarUrl}}" />
+          </view>-->
+          </view>
+          <view class="card-content">
+            <view class="infodetail">
+              <view class="phone" wx:if="{{phone!=''}}">
+                <text class="iconfont icon-call icon">  </text>
+                <text class="text">  {{phone}}</text>
+              </view>
+              <view class="address" wx:if="{{address!=''}}">
+                <text class="iconfont icon-position icon"></text>
+                <text class="text">  {{address}}</text>
+              </view>
+              <view class="other" wx:if="{{other!=''}}">
+                <text class="iconfont icon-information icon"></text>
+                <text class="text">  {{other}}</text>
+              </view>
+            </view>
+          </view>
+          <!--
+        <view class="card-content">
+          <view>
+            <view class="phone" bindtap="phoneCall" data-id="{{phone}}">
+              <text class="iconfont icon-shoujiyanzheng green">{{phone}}</text>
+            </view>
+            <view class="name">
+              <view wx:if="{{cardDetailsData.companyName!=''}}">
+                <text class="gray3 iconfont icon-yanzheng">{{comp}}</text>
+              </view>
+            </view>
+          </view>
+          <view wx:if="{{isviewImage}}" class="icon-code" bindtap="getCode" data-id="{{cardDetailsData.id}}">
+            <text class="iconfont icon-youcexiaochengxuerweima"></text>
+          </view>
+          <view wx:else class="icon-code">
+            <text class="iconfont icon-youcexiaochengxuerweima"></text>
+          </view>
+        </view>-->
+        </view>
+      </view>
+    </view>
+    <!--
+    <view class="card-attr">
+
+      <view class="card-attritem">
+        <text class="label">地址</text>
+        <text wx:if="{{cardDetailsData.address==''}}" class="gray4"> 保密</text>
+        <label wx:else>
+          <text wx:if="{{ cardDetailsData.loglat!=''}}" bindtap="openAddress" data-loglat="{{cardDetailsData.loglat}}" data-name="{{cardDetailsData.address}}"> {{address}}<text class="green iconfont        icon-location"></text></text>
+          <text wx:else> {{address}}</text>
+        </label>
+      </view>
+      <view class="card-attritem">
+        <text class="label">备注</text>
+        <text wx:if="{{cardDetailsData.other==''}}" class="gray4"> 备注</text>
+        <text wx:else> {{other}}</text>
+      </view>
+    </view>
+-->
+    <view class="butunits">
+      <!--
+      <view class="butunit"  bindtap='Sharecard'>
+        <view class="iconfont icon-share icon"></view>
+        <view>分享</view>
+      </view>-->
+      <button class="butunit" open-type="share">
+        <view class="iconfont icon-share icon"></view>
+        <view>分享</view>
+      </button>
+      <button class="butunit" bindtap="qrcode">
+        <view class="iconfont icon-scan icon"></view>
+        <view>存入通讯录</view>
+      </button>
+      <button class="butunit" bindtap="deleteCard">
+        <view class="iconfont icon-delete icon"></view>
+        <view>存入名片夹</view>
+      </button>
+      <button class="butunit" bindtap="editCard">
+        <view class="iconfont icon-edit icon"></view>
+        <view>编辑</view>
+      </button>
+      <!--
+      <button class="butunit" bindtap="deleteCard">
+        <view class="iconfont icon-delete icon"></view>
+        <view>删除</view>
+      </button>
+-->
+    </view>
+  </view>
+</view>
+<canvas canvas-id="myCanvas" class="myCanvas" hidden='{{!showcan}}'></canvas>
+<canvas hidden="{{canvasHidden}}" style="width: 686rpx;height: 686rpx;background:#f1f1f1;" canvas-id="mycanvas" />
