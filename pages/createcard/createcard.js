@@ -9,6 +9,7 @@ var app = getApp()
 Page({
   data: {
     card: {
+      tempid: 0,
       id: 0,
       name: '',
       comp: '',
@@ -124,7 +125,7 @@ Page({
       title: that.data.card.title,
       organization: that.data.card.comp,
       workAddressStreet: that.data.card.address,
-      remark:that.data.card.other,
+      remark: that.data.card.other,
       success: function() {
         wx.switchTab({
           url: '/pages/cardcase/cardcase',
@@ -153,39 +154,90 @@ Page({
   savecard() {
     var that = this;
     var card = this.data.card;
-    wx.setStorage({
-      key: "card",
-      data: card,
-    })
-    console.log(app.globalData.haslogin)
-    if (app.globalData.haslogin){
-    util.request(api.CardSave, {
-      id: card.id,
-      name: card.name,
-      phone: card.phone,
-      comp: card.comp,
-      title: card.title,
-      address: card.address,
-      other: card.other
-    }, 'POST').then(function(res) {
-      if (res.errno === 0) {
-        wx.showModal({
-          title: '添加成功',
-          content: '是否加入手机通讯录',
-          success: function(res) {
-            if (res.confirm) {
-              that.savecontact()
-              that.cleandata()
-            } else {
-              that.cleandata()
-              wx.switchTab({
-                url: '/pages/cardcase/cardcase',
-              });
+    console.log(app.globalData.hasLogin)
+    if (app.globalData.haslogin) {
+      util.request(api.CardSave, {
+        id: card.id,
+        name: card.name,
+        phone: card.phone,
+        comp: card.comp,
+        title: card.title,
+        address: card.address,
+        other: card.other
+      }, 'POST').then(function(res) {
+        if (res.errno === 0) {
+          wx.showModal({
+            title: '添加成功',
+            content: '是否加入手机通讯录',
+            success: function(res) {
+              if (res.confirm) {
+                that.savecontact()
+                that.cleandata()
+              } else {
+                that.cleandata()
+                wx.switchTab({
+                  url: '/pages/cardcase/cardcase',
+                });
+              }
             }
-          }
-        })
-      }
-    });}
+          })
+        }
+      });
+    } else {
+      //未登录 本地存储
+      var temp = [];
+      temp.push(card);
+      wx.getStorage({
+        key: 'Card_temp',
+        success: function (res) {
+          //已存在本地缓存
+          var temp2 = res.data;
+          var len = res.data.length - 1;
+          temp[0].tempid = temp2[len].tempid + 1;
+          wx.setStorage({
+            key: 'Card_temp',
+            data: temp2.concat(temp),
+          })
+          wx.showModal({
+            title: '添加成功',
+            content: '是否加入手机通讯录',
+            success: function (res) {
+              if (res.confirm) {
+                that.savecontact()
+                that.cleandata()
+              } else {
+                that.cleandata()
+                wx.switchTab({
+                  url: '/pages/cardcase/cardcase',
+                });
+              }
+            }
+          })
+        },
+        fail: function (res) {
+          //本地无缓存数据
+          wx.setStorage({
+            key: 'Card_temp',
+            data: temp,
+          })
+          wx.showModal({
+            title: '添加成功',
+            content: '是否加入手机通讯录',
+            success: function (res) {
+              if (res.confirm) {
+                that.savecontact()
+                that.cleandata()
+              } else {
+                that.cleandata()
+                wx.switchTab({
+                  url: '/pages/cardcase/cardcase',
+                });
+              }
+            }
+          })
+        },
+      })
+    }
   },
 
   //打开地图进行选择
@@ -208,20 +260,20 @@ Page({
     })
   },
 
-  onLoad: function (options) {
+  onLoad: function(options) {
     // 页面初始化 options为页面跳转所带来的参数
   },
 
-  onReady: function () {
+  onReady: function() {
     // 页面渲染完成    
   },
-  onShow: function () {
+  onShow: function() {
     // 页面显示
   },
-  onHide: function () {
+  onHide: function() {
     // 页面隐藏
   },
-  onUnload: function () {
+  onUnload: function() {
     // 页面关闭
   },
 

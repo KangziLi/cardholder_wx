@@ -497,8 +497,15 @@ Page({
       this.setData({
         userInfo: userInfo,
       });
+      this.getCardData();
+    }else{
+      //未登录获取本地数据
+      let temp = wx.getStorageSync('Card_temp');
+      this.setData({
+        CardData: temp
+      })
+      wxSortPickerView.init(this.data.CardData, this)
     }
-    this.getCardData();
   },
   canvasIdErrorCallback: function(e) {
     console.error(e.detail.errMsg)

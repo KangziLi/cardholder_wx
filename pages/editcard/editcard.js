@@ -9,6 +9,7 @@ Page({
   data: {
     card: {
       id: 0,
+      tempid: 0,
       name: '',
       comp: '',
       phone: '',
@@ -124,7 +125,7 @@ Page({
       organization: that.data.card.comp,
       workAddressStreet: that.data.card.address,
       remark: that.data.card.other,
-      success: function () {
+      success: function() {
         wx.switchTab({
           url: '/pages/cardcase/cardcase',
         });
@@ -150,112 +151,141 @@ Page({
 
   //保存名片信息
   savecard() {
-    let card = this.data.card;
     let that = this;
+    let card = this.data.card;
     let sflag = this.data.flag;
     let sid = this.data.id;
-    if (sflag == 0) {
-      console.log("sflag=0save");
-      util.request(api.MyCardSave, {
-        id: sid,
-        name: card.name,
-        phone: card.phone,
-        comp: card.comp,
-        title: card.title,
-        address: card.address,
-        other: card.other
-      }, 'POST').then(function(res) {
-        console.log(res);
-        if (res.errno === 0) {
-          wx.showModal({
-            title: '添加成功',
-            content: '将跳转至我的名片',
-          })
-          wx.switchTab({
-            url: '/pages/mycard/mycard',
-          })
+    if (sid == 0) {
+      //本地数据
+      console.log("sid=0")
+      if(sflag==0){
+        //我的名片编辑
+        console.log("sflag=0")
+        var myCard_temp=wx.getStorageSync("myCard_temp");
+        for(var i=0;i<myCard_temp.length;i++){
+          console.log("myCard_temp[i].tempid" + myCard_temp[i].tempid)
+          console.log("card.tempid" + card.tempid)
+          if(myCard_temp[i].tempid==card.tempid)
+          {
+            myCard_temp[i].name=card.name;
+            myCard_temp[i].title = card.title;
+            myCard_temp[i].address = card.address;
+            myCard_temp[i].phone = card.phone;
+            myCard_temp[i].comp = card.comp;
+            myCard_temp[i].other = card.other;
+            break;
+          }
         }
-      });
+        console.log(myCard_temp);
+        wx.setStorage({
+          key: "myCard_temp",
+          data: myCard_temp,
+        })
+        wx.showToast({
+          title: '添加成功',
+        })
+        wx.switchTab({
+          url: '/pages/mycard/mycard',
+        })
+      }else{
+        console.log("sflag=1")
+        var Card_temp = wx.getStorageSync("Card_temp");
+        for (var i = 0; i < Card_temp.length; i++) {
+          console.log("Card_temp[i].tempid" + Card_temp[i].tempid)
+          console.log("card.tempid" + card.tempid)
+          if (Card_temp[i].tempid == card.tempid) {
+            Card_temp[i].name = card.name;
+            Card_temp[i].title = card.title;
+            Card_temp[i].address = card.address;
+            Card_temp[i].phone = card.phone;
+            Card_temp[i].comp = card.comp;
+            Card_temp[i].other = card.other;
+            break;
+          }
+        }
+        wx.setStorage({
+          key: "Card_temp",
+          data: Card_temp,
+        })
+        wx.showToast({
+          title: '添加成功',
+        })
+        wx.switchTab({
+          url: '/pages/cardcase/cardcase',
+        })
+      }
     } else {
-      util.request(api.CardSave, {
-        id: sid,
-        name: card.name,
-        phone: card.phone,
-        comp: card.comp,
-        title: card.title,
-        address: card.address,
-        other: card.other
-      }, 'POST').then(function(res) {
-        console.log(res);
-        if (res.errno === 0) {
-          wx.showModal({
-            title: '保存成功',
-            content: '是否加入手机通讯录',
-            success: function (res) {
-              if (res.confirm) {
-                that.savecontact()
-                that.cleandata()
-              } else {
-                that.cleandata()
-                wx.switchTab({
-                  url: '/pages/cardcase/cardcase',
-                });
+      if (sflag == 0) {
+        util.request(api.MyCardSave, {
+          id: sid,
+          name: card.name,
+          phone: card.phone,
+          comp: card.comp,
+          title: card.title,
+          address: card.address,
+          other: card.other
+        }, 'POST').then(function(res) {
+          console.log(res);
+          if (res.errno === 0) {
+            wx.showModal({
+              title: '添加成功',
+              content: '将跳转至我的名片',
+            })
+            wx.switchTab({
+              url: '/pages/mycard/mycard',
+            })
+          }
+        });
+      } else {
+        util.request(api.CardSave, {
+          id: sid,
+          name: card.name,
+          phone: card.phone,
+          comp: card.comp,
+          title: card.title,
+          address: card.address,
+          other: card.other
+        }, 'POST').then(function(res) {
+          console.log(res);
+          if (res.errno === 0) {
+            wx.showModal({
+              title: '保存成功',
+              content: '是否加入手机通讯录',
+              success: function(res) {
+                if (res.confirm) {
+                  that.savecontact()
+                  that.cleandata()
+                } else {
+                  that.cleandata()
+                  wx.switchTab({
+                    url: '/pages/cardcase/cardcase',
+                  });
+                }
               }
-            }
-          })
-        }
-      });
+            })
+          }
+        });
+      }
     }
   },
   onLoad: function(options) {
     // 页面初始化 options为页面跳转所带来的参数
     this.setData({
-      id: options.id
+      id: options.id,
+      flag: options.flag,
     });
-    this.setData({
-      flag: options.flag
-    });
-    console.log("id=");
-    console.log(this.data.id);
-    console.log("flag=");
-    console.log(this.data.flag);
     let that = this;
     let card = this.data.card;
-    if (options.flag == 0) {
-      util.request(api.MyCardDetail, {
-        id: options.id
-      }).then(function(res) {
-        console.log(res);
-        if (res.errno === 0) {
-          card.name = res.data.name;
-          card.comp = res.data.comp;
-          card.phone = res.data.phone;
-          card.title = res.data.title;
-          card.address = res.data.address;
-          card.other = res.data.other;
-          that.setData({
-            card: card
-          });
-        }
-      });
-    } else {
-      util.request(api.CardDetail, {
-        id: options.id
-      }).then(function(res) {
-        console.log(res);
-        if (res.errno === 0) {
-          card.name = res.data.name;
-          card.comp = res.data.comp;
-          card.phone = res.data.phone;
-          card.title = res.data.title;
-          card.address = res.data.address;
-          card.other = res.data.other;
-          that.setData({
-            card: card
-          });
-        } else(console.log(res.errmsg))
-      });
-    }
+    card.tempid = options.tempid;
+    card.name = options.name;
+    card.comp = options.comp;
+    card.phone = options.phone;
+    card.title = options.title;
+    card.address = options.address;
+    card.other = options.other;
+    that.setData({
+      card: card
+    });
   },
 
   onReady: function() {

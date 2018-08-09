@@ -11,6 +11,7 @@ Page({
   data: {
     mycard: {
       id: 0,
+      tempid: 0,
       avatarUrl: '',
       name: '',
       comp: '',
@@ -22,6 +23,7 @@ Page({
     mycardId: 0,
     imageSrc: "",
   },
+
   openAddress: function() {
     var that = this
     let mycard = that.data.mycard;
@@ -42,6 +44,7 @@ Page({
       }
     })
   },
+
   bindinputName(e) {
     let mycard = this.data.mycard;
     mycard.name = e.detail.value;
@@ -78,7 +81,6 @@ Page({
     });
   },
   bindinputAddress(e) {
-
     let mycard = this.data.mycard;
     mycard.address = e.detail.value;
     this.setData({
@@ -93,20 +95,7 @@ Page({
       count: 1,
       sourceType: ['album'],
       sizeType: ['compressed'],
-      success: function (res) {
-        console.log(res.tempFilePaths[0])
-        wx.navigateTo({
-          url: '../cardscanner/cardscanner?path=' + res.tempFilePaths[0]+"&flag=0",
-        })
-      },
-    })
-  },
-  bindCamera(e) {
-    wx.chooseImage({
-      count: 1,
-      sizeType: ['compressed'],
-      sourceType: ['camera'],
-      success: function (res) {
+      success: function(res) {
         console.log(res.tempFilePaths[0])
         wx.navigateTo({
           url: '../cardscanner/cardscanner?path=' + res.tempFilePaths[0] + "&flag=0",
@@ -114,6 +103,21 @@ Page({
       },
     })
   },
+
+  bindCamera(e) {
+    wx.chooseImage({
+      count: 1,
+      sizeType: ['compressed'],
+      sourceType: ['camera'],
+      success: function(res) {
+        console.log(res.tempFilePaths[0])
+        wx.navigateTo({
+          url: '../cardscanner/cardscanner?path=' + res.tempFilePaths[0] + "&flag=0",
+        })
+      },
+    })
+  },
+
   savecardcheck() {
     let that = this;
     let mycard = this.data.mycard;
@@ -126,7 +130,7 @@ Page({
         title: '提示',
         content: '输入无效手机号,请进行检查，若为特殊号码，请点击忽略',
         cancelText: "忽略",
-        success: function (res) {
+        success: function(res) {
           console.log(res)
           if (!res.confirm) {
             that.saveMycard();
@@ -138,30 +142,61 @@ Page({
     }
   },
   saveMycard() {
-    console.log(this.data.mycard)
     let mycard = this.data.mycard;
     let that = this;
     console.log(api.MyCardSave)
-    util.request(api.MyCardSave, {
-      id: mycard.id,
-      name: mycard.name,
-      phone: mycard.phone,
-      comp: mycard.comp,
-      title: mycard.title,
-      address: mycard.address,
-      other: mycard.other
-    }, 'POST').then(function(res) {
-      console.log(res);
-      if (res.errno === 0) {
-        wx.showModal({
-          title: '添加成功',
-          content: '将跳转至我的名片',
-        })
-        wx.switchTab({
-          url: '/pages/mycard/mycard',
-        })
-      }
-    });
+    if (app.globalData.hasLogin) {
+      //已登录 上传至服务器存储
+      util.request(api.MyCardSave, {
+        id: mycard.id,
+        name: mycard.name,
+        phone: mycard.phone,
+        comp: mycard.comp,
+        title: mycard.title,
+        address: mycard.address,
+        other: mycard.other
+      }, 'POST').then(function(res) {
+        console.log(res);
+        if (res.errno === 0) {
+          wx.showToast({
+            title: '添加成功',
+          });
+          wx.switchTab({
+            url: '/pages/mycard/mycard',
+          })
+        }
+      });
+    } else {
+      //未登录 本地存储
+      var temp = [];
+      temp.push(mycard);
+      wx.getStorage({
+        key: 'myCard_temp',
+        success: function(res) {
+          //已存在本地缓存
+          var temp2 = res.data;
+          var len = res.data.length-1;
+          temp[0].tempid = temp2[len].tempid+1;
+          wx.setStorage({
+            key: 'myCard_temp',
+            data: temp2.concat(temp),
+          })
+          wx.showToast({
+            title: '添加成功',
+          });
+          wx.switchTab({
+            url: '/pages/mycard/mycard',
+          })
+        },
+        fail: function(res) {
+          //本地无缓存数据
+          wx.setStorage({
+            key: 'myCard_temp',
+            data: temp,
+          })
+        },
+      })
+    }
   },
   onLoad: function(options) {
     // 页面初始化 options为页面跳转所带来的参数
