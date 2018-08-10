@@ -209,6 +209,17 @@ Page({
 
   //生成分享信息
   onShareAppMessage: function() {
+    if (this.data.myCardData.length==0){
+      wx.showModal({
+        title: '提示',
+        content: '您还未创建个人名片，请先填写您的名片信息',
+        success:function(res){
+            wx.navigateTo({
+              url: '../createmycard/createmycard'
+            })
+        }
+      })
+    }
     console.log("mycard.js  onShareAppMessage 生成分享信息");
     let that = this;
     var cur = this.data.current;

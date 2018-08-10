@@ -18,6 +18,10 @@ Page({
         that.setData({
           CardData: res.data,
         });
+        wx.setStorage({
+          key: 'Card',
+          data: res.data,
+        })
         wxSortPickerView.init(that.data.CardData, that)
       };
     })
@@ -513,7 +517,7 @@ Page({
           })
         }
       });
-      
+
       this.getCardData();
     }else{
       //未登录获取本地数据

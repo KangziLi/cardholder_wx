@@ -84,7 +84,19 @@
   position: relative;
   top: 1px;
 }
+.cardadd{
+  height: 340rpx;
+  color:  #4285f5;
+  display:flex;
+justify-content:center;
+align-items:center;
+font-size:40rpx;
 
+}
+.cardadd .bicon{
+  font-size: 60rpx;
+  margin-right: 20rpx;
+}
 .btn-green{
   color: #4285f5;
   background: white;
@@ -329,16 +341,29 @@ padding: 0;
 .main {
   height: auto;
 }
+.btnbox{
+  display: flex;
+}
 .btn-blue{
+  display: flex;
+  align-items:center;
+  justify-content:center;
   letter-spacing: 6rpx;
-  background: #4285f5;
-  color: white;
-  width: 80%;
-  height: 80rpx;
-  font-size: 35rpx;
+  background: #fff;
+  color: #4285f5;
+  width: 45%;
+  height: 90rpx;
+  padding: 0rpx;
+  font-size: 40rpx;
   text-align: center;
   margin-top: 10rpx;
+  border: solid 2rpx #4285f5;
 }
+.bicon{
+  font-size: 50rpx;
+  justify-content: center;
+}
+
 .card-item{
   margin:0;
   padding:0;
