@@ -497,6 +497,23 @@ Page({
       this.setData({
         userInfo: userInfo,
       });
+      //上传本地缓存
+      wx.getStorage({
+        key: 'Card_temp',
+        success: function (res) {
+          let temp = res.data;
+          for (var i = 0; i < temp.length; i++) {
+            util.request(api.CardSave, temp[i], 'POST').then(function (res) {
+              console.log(res);
+            });
+          }
+          wx.setStorage({
+            key: 'Card_temp',
+            data: [],
+          })
+        }
+      });
+      
       this.getCardData();
     }else{
       //未登录获取本地数据

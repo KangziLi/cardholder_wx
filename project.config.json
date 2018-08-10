@@ -32,7 +32,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 5,
+			"current": 6,
 			"list": [
 				{
 					"id": -1,
@@ -69,6 +69,12 @@
 					"name": "录入",
 					"pathName": "pages/carddetails/carddetails",
 					"query": "id=130&flag=0"
+				},
+				{
+					"id": 6,
+					"name": "分享",
+					"pathName": "pages/sharecard/sharecard",
+					"query": "name=lkz&id=9&tempid=9"
 				}
 			]
 		}

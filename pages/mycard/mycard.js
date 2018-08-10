@@ -14,10 +14,10 @@ Page({
     myCardData: [],
     userInfo: {
       nickName: '登录同步云端数据',
-      avatarUrl: '../../images/manwhite.png'
+      avatarUrl: '../../images/backup.png'
     },
     did: 0,
-    dtempid:0,
+    dtempid: 0,
     dname: "",
     dtitle: "",
     dcomp: "",
@@ -30,10 +30,10 @@ Page({
   },
 
   //获取我的名片数据
-  getmyCardData: function () {
+  getmyCardData: function() {
     console.log("mycard.js getmyCardData 获取我的名片数据");
     var that = this;
-    util.request(api.MyCardList).then(function (res) {
+    util.request(api.MyCardList).then(function(res) {
       console.log("我的名片数据");
       console.log(res);
       if (res.errno === 0) {
@@ -50,7 +50,7 @@ Page({
   },
 
   //跳转至个人名片创建
-  openCreatecard: function () {
+  openCreatecard: function() {
     console.log("mycard.js openCreatecard 跳转至个人名片创建");
     wx.navigateTo({
       url: '../createmycard/createmycard'
@@ -58,7 +58,7 @@ Page({
   },
 
   //长字符分割
-  getContent: function (str, l = 30) {
+  getContent: function(str, l = 30) {
     console.log("mycard.js getContent 长字符分割");
     let len = 0;
     let index = 0;
@@ -83,7 +83,7 @@ Page({
   },
 
   //绘制名片图片
-  Drawcard: function (e) {
+  Drawcard: function(e) {
     console.log("mycard.js Drawcard 绘制名片图片");
     wx.showLoading({
       title: '正在生成图片',
@@ -176,7 +176,7 @@ Page({
       }
     }
     ctx.draw();
-    setTimeout(function () {
+    setTimeout(function() {
       console.log("save")
       wx.canvasToTempFilePath({
         x: 0,
@@ -184,7 +184,7 @@ Page({
         width: 360,
         height: contenty + 20,
         canvasId: 'myCanvas',
-        success: function (res) {
+        success: function(res) {
           console.log(res);
           that.setData({
             shareImage: res.tempFilePath,
@@ -196,7 +196,7 @@ Page({
             urls: [res.tempFilePath],
           })
         },
-        fail: function (res) {
+        fail: function(res) {
           console.log(res)
           that.setData({
             showcan: false
@@ -208,7 +208,7 @@ Page({
   },
 
   //生成分享信息
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
     console.log("mycard.js  onShareAppMessage 生成分享信息");
     let that = this;
     var cur = this.data.current;
@@ -236,20 +236,20 @@ Page({
   },
 
   //监听名片切换事件
-  bindChange: function (e) {
+  bindChange: function(e) {
     this.setData({
       current: e.detail.current
     });
   },
 
   //生成名片图片
-  Sharecard: function (e) {
+  Sharecard: function(e) {
     console.log("mycard.js Sharecard 生成名片图片");
     let that = this;
     wx.showModal({
       title: '提示',
       content: '生成名片图，长按可保存至手机相册或分享至微信聊天',
-      success: function (res) {
+      success: function(res) {
         if (res.confirm) {
           that.Drawcard();
         }
@@ -258,14 +258,14 @@ Page({
   },
 
   //退出登陆
-  exitLogin: function () {
+  exitLogin: function() {
     console.log("mycard.js exitLogin 退出登录");
     let that = this;
     wx.showModal({
       title: '',
       confirmColor: '#b4282d',
       content: '退出登录？',
-      success: function (res) {
+      success: function(res) {
         if (res.confirm) {
           wx.removeStorageSync('token');
           wx.removeStorageSync('userInfo');
@@ -295,7 +295,7 @@ Page({
     }
   },
 
-  onLoad: function (options) {
+  onLoad: function(options) {
     //检测是否登陆
     user.checkLogin().then(res => {
       console.log("this.globalData.hasLogin = true")
@@ -314,12 +314,12 @@ Page({
       });
     }
   },
-  onReady: function () {
+  onReady: function() {
     console.log("user.js onready")
     console.log(app.globalData.hasLogin)
     // 页面渲染完成
   },
-  onShow: function () {
+  onShow: function() {
     console.log("user.js onshow")
     //页面显示
     //获取用户的登录信息
@@ -330,6 +330,22 @@ Page({
       let userInfo = wx.getStorageSync('userInfo');
       this.setData({
         userInfo: userInfo,
+      });
+      //上传本地缓存
+      wx.getStorage({
+        key: 'myCard_temp',
+        success: function(res) {
+          let temp = res.data;
+          for (var i = 0; i < temp.length; i++) {
+            util.request(api.MyCardSave, temp[i], 'POST').then(function(res) {
+              console.log(res);
+            });
+          }
+          wx.setStorage({
+            key: 'myCard_temp',
+            data: [],
+          })
+        }
       });
       this.getmyCardData();
     } else {
@@ -344,10 +360,10 @@ Page({
       len: length
     })
   },
-  onHide: function () {
+  onHide: function() {
     // 页面隐藏
   },
-  onUnload: function () {
+  onUnload: function() {
     // 页面关闭
   }
 })

@@ -37,15 +37,14 @@
 
 .profile-info {
   width: auto;
-  height: 260rpx;
+  height: 240rpx;
   display: block;
   background: #4285f5;
   text-align: center
 }
 
 .profile-info .avatar {
-  margin-bottom: 10rpx;
-  margin-top: 40rpx;
+  margin-top: 30rpx;
   width: 148rpx;
   height: 148rpx;
   border-radius: 50%

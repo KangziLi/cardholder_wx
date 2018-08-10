@@ -1,7 +1,7 @@
 <import src="../template/template.wxml" />
 
 <view class="profile-info">
-  <image src="{{userInfo.avatarUrl}}" class="avatar"></image>
+  <image src="{{userInfo.avatarUrl}}" class="avatar" ></image>
   <view class="info" bindtap="goLogin">
     <text class="name">{{userInfo.nickName}}</text>
   </view>

@@ -1,3 +1,5 @@
+
+
 var api = require('../../../utils/api.js');
 var util = require('../../../utils/util.js');
 var user = require('../../../utils/user.js');
@@ -87,8 +89,10 @@ Page({
               wx.switchTab({
                 url: '/pages/mycard/mycard'
               });
+              
             }
           });
+
         }
         else{
           that.setData({

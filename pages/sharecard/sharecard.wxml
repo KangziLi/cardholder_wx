@@ -80,19 +80,19 @@
       </view>-->
       <button class="butunit" open-type="share">
         <view class="iconfont icon-share icon"></view>
-        <view>分享</view>
+        <view>分享名片</view>
       </button>
-      <button class="butunit" bindtap="qrcode">
-        <view class="iconfont icon-scan icon"></view>
-        <view>存入通讯录</view>
+      <button class="butunit" bindtap="addcontact">
+        <view class="iconfont icon-payout icon"></view>
+        <view>存入手机</view>
       </button>
-      <button class="butunit" bindtap="deleteCard">
-        <view class="iconfont icon-delete icon"></view>
-        <view>存入名片夹</view>
+      <button class="butunit" bindtap="addCard">
+        <view class="iconfont icon-favorite icon"></view>
+        <view>收藏名片</view>
       </button>
-      <button class="butunit" bindtap="editCard">
-        <view class="iconfont icon-edit icon"></view>
-        <view>编辑</view>
+      <button class="butunit" bindtap="cardcase">
+        <view class="iconfont icon-home icon"></view>
+        <view>进入主页</view>
       </button>
       <!--
       <button class="butunit" bindtap="deleteCard">

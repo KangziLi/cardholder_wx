@@ -193,7 +193,11 @@ Page({
           //已存在本地缓存
           var temp2 = res.data;
           var len = res.data.length - 1;
-          temp[0].tempid = temp2[len].tempid + 1;
+          if (res.data.length != 0) {
+            temp[0].tempid = temp2[len].tempid + 1;
+          } else {
+            temp[0].tempid = 1;
+          }
           wx.setStorage({
             key: 'Card_temp',
             data: temp2.concat(temp),
