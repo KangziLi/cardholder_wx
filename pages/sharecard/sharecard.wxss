@@ -115,3 +115,13 @@ font-size:60rpx;
 padding: 0;
 height: 100rpx
 }
+.button-hover[plain] {
+  border:none;
+}
+.button-hover{
+    border:none;
+}
+button[plain] {
+  border:none;
+  color:#4285f5;
+}

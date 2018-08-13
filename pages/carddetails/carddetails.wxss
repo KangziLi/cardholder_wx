@@ -95,10 +95,10 @@
   display: flex;
   width: 100%;
   justify-content: center;
-  margin: 60rpx 0 20rpx;
-  position:fixed;
+  margin: 30rpx 0 20rpx;
+  /*position:fixed;
   bottom:20rpx;
-  left: 0;
+  left: 0;*/
 }
 
 .butunit {
@@ -107,11 +107,26 @@
  text-align:center;
  color:#4285f5;
  padding: 0;
-
+  border: none;
+  background-color:#fff;
+}
+.butunit::after {
+  border: 0;
 }
 .butunit .icon{
 color:#4285f5;
 font-size:60rpx;
 padding: 0;
-height: 90rpx
+height: 90rpx;
+
+}
+.button-hover[plain] {
+  border:none;
+}
+.button-hover{
+    border:none;
+}
+button[plain] {
+  border:none;
+  color:#4285f5;
 }

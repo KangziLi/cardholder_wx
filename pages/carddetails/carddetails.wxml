@@ -78,19 +78,19 @@
         <view class="iconfont icon-share icon"></view>
         <view>分享</view>
       </view>-->
-      <button class="butunit" open-type="share">
+      <button class="butunit" open-type="share" plain="true">
         <view class="iconfont icon-share icon"></view>
         <view>分享</view>
       </button>
-      <button class="butunit" bindtap="qrcode">
+      <button class="butunit" bindtap="qrcode"  plain="true">
         <view class="iconfont icon-scan icon"></view>
         <view>二维码</view>
       </button>
-      <button class="butunit" bindtap="editCard">
+      <button class="butunit" bindtap="editCard"  plain="true">
         <view class="iconfont icon-edit icon"></view>
         <view>编辑</view>
       </button>
-      <button class="butunit" bindtap="deleteCard">
+      <button class="butunit" bindtap="deleteCard"  plain="true">
         <view class="iconfont icon-delete icon"></view>
         <view>删除</view>
       </button>

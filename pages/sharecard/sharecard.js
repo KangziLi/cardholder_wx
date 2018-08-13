@@ -523,7 +523,7 @@ Page({
   },
   cardcase:function(){
     wx.switchTab({
-      url: '/pages/cardcase/cardcase',
+      url: '/pages/mycard/mycard',
     });
   },
   qrcode: function() {

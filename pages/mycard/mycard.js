@@ -214,9 +214,11 @@ Page({
         title: '提示',
         content: '您还未创建个人名片，请先填写您的名片信息',
         success:function(res){
+          if(res.confirm){
             wx.navigateTo({
               url: '../createmycard/createmycard'
             })
+          }
         }
       })
     }

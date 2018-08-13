@@ -4,7 +4,7 @@
   <view class="searchgroup">
     <view class="searchgroup-inputitem">
       <text class="iconfont icon-search icon"></text>
-      <input bindinput="getSearchData" placeholder-class="gray3" placeholder="请输入姓名、公司等进行搜索" focus="false" bindconfirm="getSearch" value='{{keyword}}' />
+      <input focus="{{focus}}" auto-focus="{{focus}}" bindinput="getSearchData"  placeholder-class="gray3" placeholder="请输入姓名、公司等进行搜索" bindconfirm="getSearch" value='{{keyword}}' />
     </view>
     <text class="iconfont icon-cancel icon" bindtap="clearKeyword" wx:if="{{ keyword.length > 0 }}"></text>
     <view class="searchgroup-right">
