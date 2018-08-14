@@ -25,7 +25,11 @@ Page({
     other: '',
     avatarUrl: '../../images/man2.png',
   },
-
+  bindinputOther(e) {
+    this.setData({
+      other: e.detail.value
+    });
+  },
   //分割长字符串，用于绘制名片图片
   getContent: function(str, l = 30) {
     let len = 0;

@@ -20,7 +20,7 @@
           </view>
           -->
           <view class="message">
-            <input placeholder="姓名" class="card-input" placeholder-class="gray3" maxlength="18" name="name" value="{{card.name}}" bindinput="bindinputName" />
+            <input placeholder="姓名(必填)" class="card-input" placeholder-class="gray3" maxlength="18" name="name" value="{{card.name}}" bindinput="bindinputName" />
             <input placeholder="联系方式" class="card-input" placeholder-class="gray3" maxlength="20" type="number" name="mobile" value="{{card.phone}}" bindinput="bindinputMobile" />
           </view>
         </view>
@@ -35,7 +35,7 @@
       </view>
       <view class="card-formitem">
         <view class="card-inputlabel">
-          <input placeholder="备注" placeholder-class="gray3" maxlength="40" name="more" value="{{card.other}}" class="card-input" bindinput="bindinputOther" />
+           <textarea  placeholder="为这张名片写点儿备注..." placeholder-class="gray3" value="{{card.other}}" class="card-input" bindinput="bindinputOther" />
         </view>
       </view>
       <view>

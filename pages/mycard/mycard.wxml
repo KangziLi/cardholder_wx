@@ -21,7 +21,7 @@
       wx:key="{{itemName}}" wx:for="{{myCardData}}" wx:for-index="index" wx:for-item="itemName">
       <swiper-item item-id="{{itemName.id}}">
         <view class="card-item">
-          <image class="infobackground" src='../../images/infobackground2.png'></image>
+          <image class="infobackground1" src='../../images/infobackground2.png'></image>
           <view style='padding:0rpx 30rpx 0rpx 30rpx;width:100%'>
             <view class="card-head">
               <view class="title">

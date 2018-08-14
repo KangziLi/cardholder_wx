@@ -25,7 +25,25 @@ Page({
     other: '',
     avatarUrl: '../../images/man2.png',
   },
-
+  addcontact: function () {
+    let that = this;
+    wx.addPhoneContact({
+      firstName: that.data.name,
+      mobilePhoneNumber: that.data.phone,
+      title: that.data.title,
+      organization: that.data.comp,
+      workAddressStreet: that.data.address,
+      remark: that.data.other,
+      success: function () {
+        wx.showToast({
+          title: '添加成功',
+        })
+        wx.switchTab({
+          url: '/pages/cardcase/cardcase',
+        });
+      }
+    })
+  },
   //分割长字符串，用于绘制名片图片
   getContent: function(str, l = 30) {
     console.log("carddetails.js getcontent")

@@ -26,10 +26,12 @@
                 <text class="iconfont icon-position icon"></text>
                 <text class="text">  {{address}}</text>
               </view>
+              <!--
               <view class="other" wx:if="{{other!=''}}">
                 <text class="iconfont icon-information icon"></text>
                 <text class="text">  {{other}}</text>
               </view>
+              -->
             </view>
           </view>
           <!--
@@ -72,6 +74,11 @@
       </view>
     </view>
 -->
+      <view class="card-formitem">
+        <view class="card-inputlabel">
+           <textarea  placeholder="为这张名片写点儿备注..." placeholder-class="gray3" value="{{card.other}}" class="card-input" bindinput="bindinputOther" />
+        </view>
+      </view>
     <view class="butunits">
       <!--
       <view class="butunit"  bindtap='Sharecard'>
@@ -80,26 +87,20 @@
       </view>-->
       <button class="butunit" open-type="share"  plain="true">
         <view class="iconfont icon-share icon"></view>
-        <view>分享名片</view>
+        <view class="text">分享名片</view>
       </button>
       <button class="butunit" bindtap="addcontact"  plain="true">
         <view class="iconfont icon-payout icon"></view>
-        <view>存入手机</view>
+        <view class="text">存入手机</view>
       </button>
       <button class="butunit" bindtap="addCard"  plain="true">
         <view class="iconfont icon-favorite icon"></view>
-        <view>收藏名片</view>
+        <view class="text">收藏名片</view>
       </button>
       <button class="butunit" bindtap="cardcase"  plain="true">
         <view class="iconfont icon-home icon"></view>
-        <view>进入主页</view>
+        <view class="text">进入主页</view>
       </button>
-      <!--
-      <button class="butunit" bindtap="deleteCard">
-        <view class="iconfont icon-delete icon"></view>
-        <view>删除</view>
-      </button>
--->
     </view>
   </view>
 </view>

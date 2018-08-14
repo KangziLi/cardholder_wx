@@ -34,12 +34,25 @@
     margin: 0;
   padding: 0;
 }
+.infobackground1 {
+  width: 100%;
+  height: 80rpx;
+  border: 0;
+    margin: 0;
+  padding: 0;
+-webkit-border-radius: 7px 7px 0px 0px;
+-moz-border-radius: 7px 7px 0px 0px;
+border-radius: 7px 7px 0px 0px;
+}
 
 .profile-info {
   width: auto;
   height: 240rpx;
   display: block;
-  background: #4285f5;
+background: #AACBFF;
+background: -moz-linear-gradient(top, #AACBFF 0%, #72A7FF 50%, #4285F5 100%);
+background: -webkit-linear-gradient(top, #AACBFF 0%, #72A7FF 50%, #4285F5 100%);
+background: linear-gradient(to bottom, #AACBFF 0%, #72A7FF 50%, #4285F5 100%);
   text-align: center
 }
 
@@ -116,6 +129,9 @@ font-size:40rpx;
   height: auto;
   margin-bottom: 15rpx;
   position: relative;
+-webkit-border-radius: 7px;
+-moz-border-radius: 7px;
+border-radius: 7px;
 }
 .card-item .card-head{
   margin-top: 0;

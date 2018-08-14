@@ -58,9 +58,13 @@
   margin: 0;
   padding: 0;
   border-style: none;
+  -webkit-border-radius: 7px 7px 0px 0px;
+  -moz-border-radius: 7px 7px 0px 0px;
+  border-radius: 7px 7px 0px 0px;
 }
 
 .card-item {
+  margin-top: 20rpx;
   display: flex;
   flex-wrap: wrap;
   align-content: space-between;
@@ -73,6 +77,13 @@
   position: relative;
   margin: 0;
   padding: 0;
+  -webkit-box-shadow: 3px 4px 13px 2px #757575;
+  box-shadow: 3px 4px 13px 2px #757575;
+  margin-top: 50rpx;
+  -webkit-border-radius: 7px;
+  -moz-border-radius: 7px;
+  border-radius: 7px;
+  margin-bottom: 70rpx;
 }
 
 .card-item .card-head {
@@ -95,38 +106,58 @@
   display: flex;
   width: 100%;
   justify-content: center;
-  margin: 30rpx 0 20rpx;
+  margin: 20rpx 0 0rpx;
   /*position:fixed;
   bottom:20rpx;
   left: 0;*/
 }
 
 .butunit {
-  width: 23%;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
- text-align:center;
- color:#4285f5;
- padding: 0;
+  align-items: center;
+  align-content: center;
+  width: 23%;
+  text-align: center;
+  color: #4285f5;
+  padding: 0;
   border: none;
-  background-color:#fff;
+  background-color: #fff;
 }
+
 .butunit::after {
   border: 0;
 }
-.butunit .icon{
-color:#4285f5;
-font-size:60rpx;
-padding: 0;
-height: 90rpx;
+.butunit .text{
+  font-size: 30rpx;
+  color: black;
+}
+.butunit .icon {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  color: #fff;
+  background: #4285f5;
+  font-size: 60rpx;
+  padding: 0;
+  margin: 0;
+  height: 90rpx;
+  width: 90rpx;
+  border-radius: 50rpx;
+}
 
-}
 .button-hover[plain] {
-  border:none;
+  border: none;
 }
-.button-hover{
-    border:none;
+
+.button-hover {
+  border: none;
 }
+
 button[plain] {
-  border:none;
-  color:#4285f5;
+  border: none;
+  color: #4285f5;
 }

@@ -6,8 +6,11 @@
   padding: 23rpx 0;
   font-size: 28rpx;
   width: 100%;
+   color:black;
 }
-
+.gray3{
+  color: rgb(136, 150, 170);
+}
 .card-input:last-child {
   border: 0;
 }

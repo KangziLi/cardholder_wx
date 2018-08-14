@@ -58,9 +58,13 @@
   margin: 0;
   padding: 0;
   border-style: none;
+  -webkit-border-radius: 7px 7px 0px 0px;
+  -moz-border-radius: 7px 7px 0px 0px;
+  border-radius: 7px 7px 0px 0px;
 }
 
 .card-item {
+  margin-top: 20rpx;
   display: flex;
   flex-wrap: wrap;
   align-content: space-between;
@@ -73,6 +77,12 @@
   position: relative;
   margin: 0;
   padding: 0;
+  -webkit-box-shadow: 3px 4px 13px 2px #757575;
+  box-shadow: 3px 4px 13px 2px #757575;
+  margin-top: 50rpx;
+  -webkit-border-radius: 7px;
+  -moz-border-radius: 7px;
+  border-radius: 7px;
 }
 
 .card-item .card-head {
@@ -91,29 +101,78 @@
   margin-bottom: 30rpx;
 }
 
+
 .butunits {
   display: flex;
   width: 100%;
   justify-content: center;
-  margin: 60rpx 0 20rpx;
-  position:fixed;
+  margin: 50rpx 0 20rpx;
+  /*position:fixed;
   bottom:20rpx;
-  left: 0;
+  left: 0;*/
 }
-
 .butunit {
-  width: 23%;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
- text-align:center;
- color:#4285f5;
- padding: 0;
+  align-items: center;
+  align-content: center;
+  width: 23%;
+  text-align: center;
+  color: #4285f5;
+  padding: 0;
+  border: none;
+  background-color: #fff;
+}
+
+.card-formitem {
+  background: #fff;
+  padding: 0 23rpx;
+  border-top: 1rpx solid #e0e0e0;
+  border-bottom: 1rpx solid #e0e0e0;
+  margin-top: 50rpx;
+}
+.card-inputlabel {
+  display: flex;
+}
+.gray3{
+  color: rgb(136, 150, 170);
+}
+.card-inputlabel .label {
+  margin-right: 5rpx;
+  padding: 23rpx 0;
+  font-size: 28rpx;
+}
+.card-input {
+  border-bottom: 2rpx solid #e0e0e0;
+  padding: 23rpx 0;
+  font-size: 28rpx;
+  width: 100%;
+  color:black;
+  height: 200rpx;
 
 }
-.butunit .icon{
-color:#4285f5;
-font-size:60rpx;
-padding: 0;
-height: 100rpx
+.butunit .text{
+  font-size: 30rpx;
+  color: black;
+}
+.card-inputlabel .label.icon-location {
+  font-size: 40rpx;
+}
+.butunit .icon {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  color: #fff;
+  background: #4285f5;
+  font-size: 60rpx;
+  padding: 0;
+  margin: 0;
+  height: 90rpx;
+  width: 90rpx;
+  border-radius: 50rpx;
 }
 .button-hover[plain] {
   border:none;

@@ -5,6 +5,7 @@
   padding: 23rpx 0;
   font-size: 28rpx;
   width: 100%;
+  color:black;
 }
 .card-inputlabel .icon{
   width:80rpx;
@@ -21,7 +22,9 @@
 .card-inputlabel {
   display: flex;
 }
-
+.gray3{
+  color: rgb(136, 150, 170);
+}
 .card-inputlabel .label {
   margin-right: 5rpx;
   padding: 23rpx 0;
