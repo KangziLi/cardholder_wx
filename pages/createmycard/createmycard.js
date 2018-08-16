@@ -24,6 +24,7 @@ Page({
     imageSrc: "",
   },
 
+  //选择地址
   openAddress: function() {
     var that = this
     let mycard = that.data.mycard;
@@ -104,6 +105,7 @@ Page({
     })
   },
 
+  //拍照识别
   bindCamera(e) {
     wx.chooseImage({
       count: 1,
@@ -118,6 +120,7 @@ Page({
     })
   },
 
+  //保存前校验
   savecardcheck() {
     let that = this;
     let mycard = this.data.mycard;
@@ -141,6 +144,7 @@ Page({
       that.saveMycard();
     }
   },
+  //保存名片信息
   saveMycard() {
     let mycard = this.data.mycard;
     let that = this;
@@ -175,11 +179,11 @@ Page({
         success: function(res) {
           //已存在本地缓存
           var temp2 = res.data;
-          var len = res.data.length-1;
-          if (res.data.length!=0){
+          var len = res.data.length - 1;
+          if (res.data.length != 0) {
             temp[0].tempid = temp2[len].tempid + 1;
-          }else{
-            temp[0].tempid =1;
+          } else {
+            temp[0].tempid = 1;
           }
           wx.setStorage({
             key: 'myCard_temp',
@@ -211,7 +215,7 @@ Page({
   onLoad: function(options) {
     // 页面初始化 options为页面跳转所带来的参数
     var mycard = this.data.mycard;
-    var that=this;
+    var that = this;
     wx.getStorage({
       key: 'userInfo',
       success: function(res) {

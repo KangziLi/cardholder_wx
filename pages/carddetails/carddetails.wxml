@@ -88,7 +88,7 @@
       </button>
        <button class="butunit" bindtap="Sharecard"  plain="true">
          <view class="iconfont icon-mingpian3 icon"></view>
-        <view class="text">名片图</view>
+        <view class="text">电子名片</view>
       </button>
     </view>
         <view class="butunits">

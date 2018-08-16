@@ -26,6 +26,7 @@ Page({
     avatarUrl: '../../images/man2.png',
     oldother:'',
   },
+  //获取备注信息
   bindinputOther(e) {
     this.setData({
       other: e.detail.value
@@ -80,7 +81,7 @@ Page({
     })
   },
 
-
+//绘制图片
   Drawcard: function(e) {
     console.log("share" + this.data.current)
     wx.showLoading({
@@ -441,6 +442,7 @@ Page({
       urls: [img] // 需要预览的图片http链接列表
     })
   },
+  //添加至通讯录
   addcontact: function() {
     let that = this;
     wx.addPhoneContact({

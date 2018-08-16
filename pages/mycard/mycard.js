@@ -326,6 +326,7 @@ Page({
         userInfo: userInfo,
       });
     }
+    
   },
   onReady: function() {
     console.log("user.js onready")

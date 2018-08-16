@@ -7,7 +7,7 @@ var user = require('./utils/user.js');
 App({
   onLaunch: function () {
     console.log("app.js onLaunch")
-    //测试后端连通性
+    //测试后台连通性
     wx.request({
       url: api.CardTest,
       data: {},

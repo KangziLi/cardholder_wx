@@ -25,6 +25,8 @@ Page({
     other: '',
     avatarUrl: '../../images/man2.png',
   },
+
+  //添加至手机通讯录
   addcontact: function () {
     let that = this;
     wx.addPhoneContact({
@@ -475,6 +477,7 @@ Page({
 
 
   onLoad: function(options) {
+    // 页面加载
     console.log(options);
     this.setData({
       id: options.id,
@@ -487,47 +490,6 @@ Page({
       address: options.address,
       other: options.other,
     });
-    /*
-    let that = this;
-    if (options.flag == 0) {
-      console.log("this.data.flag=0");
-      util.request(api.MyCardDetail, {
-        id: options.id
-      }).then(function (res) {
-
-        if (res.errno === 0) {
-
-          that.setData({
-            name: res.data.name,
-            comp: res.data.comp,
-            phone: res.data.phone,
-            title: res.data.title,
-            address: res.data.address,
-            other: res.data.other,
-          });
-        }
-      });
-    } else {
-      console.log("this.data.flag=1");
-      util.request(api.CardDetail, {
-        id: options.id
-      }).then(function (res) {
-        if (res.errno === 0) {
-          console.log("get detail success")
-          that.setData({
-            name: res.data.name,
-            comp: res.data.comp,
-            phone: res.data.phone,
-            title: res.data.title,
-            address: res.data.address,
-            other: res.data.other,
-          });
-        } else (console.log(res.errmsg))
-      });
-
-    }
-    */
-
   },
   onReady: function() {
     // 页面渲染完成

@@ -67,7 +67,7 @@
     </navigator>
   </swiper>
   <view class="btnbox">
-    <button class="btn-blue" open-type="share" wx:if="{{myCardData.length!=0}}">
+    <button class="btn-blue" open-type="share" wx:if="{{myCardData.length!=0&&current!=myCardData.length}}">
       <text class="iconfont icon-mingpian bicon"></text>
       <text>递送本张名片</text>
     </button>

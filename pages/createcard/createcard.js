@@ -21,6 +21,8 @@ Page({
     cardId: 0,
     imageSrc: "",
   },
+
+  //获取姓名数据
   bindinputName(e) {
     let card = this.data.card;
     card.name = e.detail.value;
@@ -28,6 +30,8 @@ Page({
       card: card
     });
   },
+
+  //获取职位数据
   bindinputTitle(e) {
     let card = this.data.card;
     card.title = e.detail.value;
@@ -35,6 +39,8 @@ Page({
       card: card
     });
   },
+
+  //获取手机数据
   bindinputMobile(e) {
     let card = this.data.card;
     card.phone = e.detail.value;
@@ -43,6 +49,7 @@ Page({
     });
   },
 
+  //获取公司数据
   bindinputCompany(e) {
     let card = this.data.card;
     card.comp = e.detail.value;
@@ -50,6 +57,8 @@ Page({
       card: card
     });
   },
+
+  //获取备注数据
   bindinputOther(e) {
     let card = this.data.card;
     card.other = e.detail.value;
@@ -57,6 +66,8 @@ Page({
       card: card
     });
   },
+
+  //获取地址数据
   bindinputAddress(e) {
     let card = this.data.card;
     card.address = e.detail.value;
@@ -64,6 +75,7 @@ Page({
       card: card
     });
   },
+
   //选择图像进行识别
   bindChooseImg(e) {
     wx.chooseImage({
@@ -78,6 +90,8 @@ Page({
       },
     })
   },
+
+  //拍照进行识别
   bindCamera(e) {
     wx.chooseImage({
       count: 1,
@@ -91,6 +105,8 @@ Page({
       },
     })
   },
+
+  //保存前校验
   savecardcheck() {
     let that = this;
     let card = this.data.card;
@@ -114,7 +130,8 @@ Page({
       that.savecard();
     }
   },
-
+  
+  //保存至手机通讯录
   savecontact() {
     let that = this;
     var card = this.data.card;
@@ -131,7 +148,7 @@ Page({
           url: '/pages/cardcase/cardcase',
         });
       },
-      fail:function(){
+      fail: function() {
         wx.switchTab({
           url: '/pages/cardcase/cardcase',
         });
@@ -194,7 +211,7 @@ Page({
       temp.push(card);
       wx.getStorage({
         key: 'Card_temp',
-        success: function (res) {
+        success: function(res) {
           //已存在本地缓存
           var temp2 = res.data;
           var len = res.data.length - 1;
@@ -210,7 +227,7 @@ Page({
           wx.showModal({
             title: '添加成功',
             content: '是否加入手机通讯录',
-            success: function (res) {
+            success: function(res) {
               if (res.confirm) {
                 that.savecontact()
                 that.cleandata()
@@ -223,7 +240,7 @@ Page({
             }
           })
         },
-        fail: function (res) {
+        fail: function(res) {
           //本地无缓存数据
           wx.setStorage({
             key: 'Card_temp',
@@ -232,7 +249,7 @@ Page({
           wx.showModal({
             title: '添加成功',
             content: '是否加入手机通讯录',
-            success: function (res) {
+            success: function(res) {
               if (res.confirm) {
                 that.savecontact()
                 that.cleandata()
