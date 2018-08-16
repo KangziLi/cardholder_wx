@@ -1,8 +1,8 @@
 <import src="../template/template.wxml" />
 
-<view class="profile-info">
+<view class="profile-info" bindtap="goLogin">
   <image src="{{userInfo.avatarUrl}}" class="avatar"></image>
-  <view class="info" bindtap="goLogin">
+  <view class="info">
     <text class="name">{{userInfo.nickName}}</text>
   </view>
   <!--<button class="logout" bindtap="exitLogin">退出登录</button>-->
@@ -16,10 +16,10 @@
   <!--名片列表
   <template is="card" data="{{myCardData}}" />
   <swiper  bindchange="bindChange" indicator-dots="true" style="height:500rpx" current ='{{current}}' wx:if="{{myCardData.length!=0}}" current-item-id="{{itemName.id}}">-->
-  <swiper bindchange="bindChange" indicator-dots="true" style="height:500rpx" current='{{current}}' >
+  <swiper bindchange="bindChange" indicator-dots="true" style="height:500rpx" current='{{current}}'>
     <navigator url="../carddetails/carddetails?id={{itemName.id}}&tempid={{itemName.tempid}}&flag=0&name={{itemName.name}}&title={{itemName.title}}&comp={{itemName.comp}}&address={{itemName.address}}&phone={{itemName.phone}}&other={{itemName.other}}" d hover-class="none"
       wx:key="{{itemName}}" wx:for="{{myCardData}}" wx:for-index="index" wx:for-item="itemName">
-      <swiper-item item-id="{{itemName.id}}">
+      <swiper-item wx:if="{{myCardData.length!=0}}">
         <view class="card-item">
           <image class="infobackground1" src='../../images/infobackground2.png'></image>
           <view style='padding:0rpx 30rpx 0rpx 30rpx;width:100%'>
@@ -52,13 +52,14 @@
       </swiper-item>
     </navigator>
     <navigator url="../createmycard/createmycard">
-      <swiper-item wx:if="{{myCardData.length==0}}">
+      <swiper-item>
         <view class="card-item">
-          <image class="infobackground" src='../../images/infobackground2.png'></image>
+          <image class="infobackground1" src='../../images/infobackground2.png'></image>
           <view style='padding:0rpx 30rpx 0rpx 30rpx;width:100%'>
             <view class="cardadd">
-             <text class="iconfont icon-card bicon"></text>
-             <text>点击制作电子名片</text>
+              <text class="iconfont icon-card bicon"></text>
+              <text wx:if="{{myCardData.length==0}}">点击制作电子名片</text>
+              <text wx:else>新增我的电子名片</text>
             </view>
           </view>
         </view>
@@ -68,13 +69,13 @@
   <view class="btnbox">
     <button class="btn-blue" open-type="share" wx:if="{{myCardData.length!=0}}">
       <text class="iconfont icon-mingpian bicon"></text>
-      <text>递名片</text>
+      <text>递送本张名片</text>
     </button>
-    <!--<button class="btn-blue" bindtap='Sharecard'>递名片</button>-->
+    <!--<button class="btn-blue" bindtap='Sharecard'>递名片</button>
     <button class="btn-blue" bindtap='openCreatecard' wx:if="{{myCardData.length!=0}}">
       <text class="iconfont icon-add bicon"></text>
-      <text>新增名片</text>
-    </button>
+      <text>新增我的名片</text>
+    </button>-->
   </view>
   <canvas canvas-id="myCanvas" class="myCanvas" hidden='{{!showcan}}'></canvas>
 </view>

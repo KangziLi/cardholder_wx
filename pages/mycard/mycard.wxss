@@ -98,7 +98,7 @@ background: linear-gradient(to bottom, #AACBFF 0%, #72A7FF 50%, #4285F5 100%);
   top: 1px;
 }
 .cardadd{
-  height: 340rpx;
+  height: 310rpx;
   color:  #4285f5;
   display:flex;
 justify-content:center;
@@ -367,17 +367,20 @@ padding: 0;
   letter-spacing: 6rpx;
   background: #fff;
   color: #4285f5;
-  width: 45%;
+  width: 80%;
   height: 90rpx;
   padding: 0rpx;
   font-size: 40rpx;
   text-align: center;
   margin-top: 10rpx;
   border: solid 2rpx #4285f5;
+  -webkit-border-radius: 50px;
+border-radius: 50px;
 }
 .bicon{
   font-size: 50rpx;
   justify-content: center;
+  margin-right: 15rpx;
 }
 
 .card-item{

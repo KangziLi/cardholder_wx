@@ -130,6 +130,11 @@ Page({
         wx.switchTab({
           url: '/pages/cardcase/cardcase',
         });
+      },
+      fail:function(){
+        wx.switchTab({
+          url: '/pages/cardcase/cardcase',
+        });
       }
     })
   },
@@ -232,7 +237,7 @@ Page({
                 that.savecontact()
                 that.cleandata()
               } else {
-                that.cleandata()
+                that.cleandata();
                 wx.switchTab({
                   url: '/pages/cardcase/cardcase',
                 });

@@ -6,7 +6,7 @@ var app = getApp();
 
 Page({
   data: {
-    focus:true,
+    focus:false,
     CardData: [],
     keyword:"",
   },

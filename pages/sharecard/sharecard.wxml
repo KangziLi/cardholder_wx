@@ -26,12 +26,12 @@
                 <text class="iconfont icon-position icon"></text>
                 <text class="text">  {{address}}</text>
               </view>
-              <!--
-              <view class="other" wx:if="{{other!=''}}">
+         
+              <view class="other" wx:if="{{oldother!=''}}">
                 <text class="iconfont icon-information icon"></text>
-                <text class="text">  {{other}}</text>
+                <text class="text">  {{oldother}}</text>
               </view>
-              -->
+         
             </view>
           </view>
           <!--
@@ -90,12 +90,12 @@
         <view class="text">分享名片</view>
       </button>
       <button class="butunit" bindtap="addcontact"  plain="true">
-        <view class="iconfont icon-payout icon"></view>
+        <view class="iconfont icon-shouji icon"></view>
         <view class="text">存入手机</view>
       </button>
       <button class="butunit" bindtap="addCard"  plain="true">
-        <view class="iconfont icon-favorite icon"></view>
-        <view class="text">收藏名片</view>
+        <view class="iconfont icon-favorite1 icon"></view>
+        <view class="text">收录名片</view>
       </button>
       <button class="butunit" bindtap="cardcase"  plain="true">
         <view class="iconfont icon-home icon"></view>

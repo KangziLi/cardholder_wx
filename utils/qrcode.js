@@ -775,7 +775,7 @@
         // 组件中生成qrcode需要绑定this 
         ctx = wx.createCanvasContext(canvas, $this),
         px = Math.round(size / (width + 8));
-      var roundedSize = px * (width + 8),
+      var roundedSize = px * (width +8),
         offset = Math.floor((size - roundedSize) / 2);
       size = roundedSize;
       //ctx.clearRect(0, 0, cavW, cavW);
@@ -791,7 +791,7 @@
       }
       ctx.setFillStyle('#212121') //文字颜色：默认黑色
       ctx.setFontSize(15) //设置字体大小，默认10
-      ctx.fillText("扫描二维码添加名片信息至手机通讯录",40,20) //绘制文本
+      ctx.fillText("扫描二维码添加名片信息至手机通讯录",40,13) //绘制文本
       ctx.draw();
     }
   }

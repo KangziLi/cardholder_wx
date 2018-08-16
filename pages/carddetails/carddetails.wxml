@@ -79,25 +79,25 @@
         <view>分享</view>
       </view>-->
       <button class="butunit" open-type="share" plain="true">
-        <view class="iconfont icon-share icon"></view>
+        <view class="iconfont icon-mingpian icon"></view>
         <view class="text">递名片</view>
       </button>
       <button class="butunit" bindtap="qrcode"  plain="true">
-        <view class="iconfont icon-scan icon"></view>
-        <view class="text">二维码</view>
+        <view class="iconfont icon-erweimafenxiang icon"></view>
+        <view class="text">名片二维码</view>
       </button>
        <button class="butunit" bindtap="Sharecard"  plain="true">
-         <view class="iconfont icon-identity icon"></view>
+         <view class="iconfont icon-mingpian3 icon"></view>
         <view class="text">名片图</view>
       </button>
     </view>
         <view class="butunits">
       <button class="butunit" bindtap="addcontact"  plain="true">
-        <view class="iconfont icon-payout icon"></view>
+        <view class="iconfont icon-shouji icon"></view>
         <view class="text">存入手机</view>
       </button>
       <button class="butunit" bindtap="editCard"  plain="true">
-        <view class="iconfont icon-edit icon"></view>
+        <view class="iconfont icon-bianji1 icon"></view>
         <view class="text">编辑名片</view>
       </button>
       <button class="butunit" bindtap="deleteCard"  plain="true">

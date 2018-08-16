@@ -35,7 +35,7 @@
       </view>
       <view class="card-formitem">
         <view class="card-inputlabel">
-           <textarea  placeholder="为这张名片写点儿备注..." placeholder-class="gray3" value="{{card.other}}" class="card-input" bindinput="bindinputOther" />
+           <textarea  placeholder="为这张名片写点儿备注..." placeholder-class="gray3" value="{{card.other}}" class="card-input" bindinput="bindinputOther"  style='height:200rpx;' />
         </view>
       </view>
       <view>

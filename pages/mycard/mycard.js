@@ -250,6 +250,7 @@ Page({
 
   //监听名片切换事件
   bindChange: function(e) {
+    console.log("current" + e.detail.current)
     this.setData({
       current: e.detail.current
     });
@@ -301,9 +302,8 @@ Page({
       this.setData({
         userInfo: userInfo,
       });
-      wx.showModal({
-        title: '',
-        content: '用户已登录',
+      wx.showToast({
+        title: '登录成功',
       })
     }
   },

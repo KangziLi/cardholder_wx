@@ -198,18 +198,30 @@ Page({
             key: 'myCard_temp',
             data: temp,
           })
+          wx.showToast({
+            title: '添加成功',
+          });
+          wx.switchTab({
+            url: '/pages/mycard/mycard',
+          })
         },
       })
     }
   },
   onLoad: function(options) {
     // 页面初始化 options为页面跳转所带来的参数
-    let mycard = this.data.mycard;
-    mycard.name = wx.getStorageSync('userInfo').nickName;
-    mycard.avatarUrl = wx.getStorageSync('userInfo').avatarUrl;
-    this.setData({
-      mycard: mycard
-    });
+    var mycard = this.data.mycard;
+    var that=this;
+    wx.getStorage({
+      key: 'userInfo',
+      success: function(res) {
+        mycard.name = res.data.nickName;
+        mycard.avatarUrl = res.data.avatarUrl;
+        that.setData({
+          mycard: mycard
+        });
+      },
+    })
   },
 
   onReady: function() {

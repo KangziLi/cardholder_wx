@@ -384,6 +384,8 @@ Page({
     var that = this;
     var tempFilePath = '';
     wx.canvasToTempFilePath({
+      x:0,
+      y:0,
       canvasId: 'mycanvas',
       success: function(res) {
         tempFilePath = res.tempFilePath;

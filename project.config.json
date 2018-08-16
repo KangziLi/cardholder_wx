@@ -74,7 +74,7 @@
 					"id": 6,
 					"name": "分享",
 					"pathName": "pages/sharecard/sharecard",
-					"query": "name=lkz&id=9&tempid=9"
+					"query": "name=lkz&id=9&tempid=9&phone=324234&other=slfjs&address=sdlf"
 				}
 			]
 		}

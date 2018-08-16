@@ -24,6 +24,7 @@ Page({
     address: '',
     other: '',
     avatarUrl: '../../images/man2.png',
+    oldother:'',
   },
   bindinputOther(e) {
     this.setData({
@@ -578,6 +579,7 @@ Page({
       title: options.title,
       address: options.address,
       other: options.other,
+      oldother: options.other,
     });
     /*
     let that = this;
