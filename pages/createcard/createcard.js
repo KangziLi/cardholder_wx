@@ -22,7 +22,7 @@ Page({
     imageSrc: "",
   },
 
-  //获取姓名数据
+  //获取姓名输入
   bindinputName(e) {
     let card = this.data.card;
     card.name = e.detail.value;
@@ -31,7 +31,7 @@ Page({
     });
   },
 
-  //获取职位数据
+  //获取职位输入
   bindinputTitle(e) {
     let card = this.data.card;
     card.title = e.detail.value;
@@ -40,7 +40,7 @@ Page({
     });
   },
 
-  //获取手机数据
+  //获取手机输入
   bindinputMobile(e) {
     let card = this.data.card;
     card.phone = e.detail.value;
@@ -49,7 +49,7 @@ Page({
     });
   },
 
-  //获取公司数据
+  //获取公司输入
   bindinputCompany(e) {
     let card = this.data.card;
     card.comp = e.detail.value;
@@ -58,7 +58,7 @@ Page({
     });
   },
 
-  //获取备注数据
+  //获取备注输入
   bindinputOther(e) {
     let card = this.data.card;
     card.other = e.detail.value;
@@ -67,7 +67,7 @@ Page({
     });
   },
 
-  //获取地址数据
+  //获取地址输入
   bindinputAddress(e) {
     let card = this.data.card;
     card.address = e.detail.value;

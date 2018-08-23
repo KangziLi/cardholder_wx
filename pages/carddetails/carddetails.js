@@ -46,6 +46,7 @@ Page({
       }
     })
   },
+
   //分割长字符串，用于绘制名片图片
   getContent: function(str, l = 30) {
     console.log("carddetails.js getcontent")
@@ -474,7 +475,6 @@ Page({
     }
 
   },
-
 
   onLoad: function(options) {
     // 页面加载

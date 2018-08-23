@@ -28,7 +28,7 @@ module.exports = {
   CardDelete: WxApiRoot + 'card/delete',//删除名片
   CardDetail: WxApiRoot + 'card/detail',//名片信息
   CardSearch: WxApiRoot + 'card/search',//名片搜索
+  
   //其他
   CardTest: WxApiRoot + 'card/test',//测试
-  OCR: WxApiRoot + 'card/ocr',//测试
 };

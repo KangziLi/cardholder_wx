@@ -34,57 +34,15 @@
          
             </view>
           </view>
-          <!--
-        <view class="card-content">
-          <view>
-            <view class="phone" bindtap="phoneCall" data-id="{{phone}}">
-              <text class="iconfont icon-shoujiyanzheng green">{{phone}}</text>
-            </view>
-            <view class="name">
-              <view wx:if="{{cardDetailsData.companyName!=''}}">
-                <text class="gray3 iconfont icon-yanzheng">{{comp}}</text>
-              </view>
-            </view>
-          </view>
-          <view wx:if="{{isviewImage}}" class="icon-code" bindtap="getCode" data-id="{{cardDetailsData.id}}">
-            <text class="iconfont icon-youcexiaochengxuerweima"></text>
-          </view>
-          <view wx:else class="icon-code">
-            <text class="iconfont icon-youcexiaochengxuerweima"></text>
-          </view>
-        </view>-->
         </view>
       </view>
     </view>
-    <!--
-    <view class="card-attr">
-
-      <view class="card-attritem">
-        <text class="label">地址</text>
-        <text wx:if="{{cardDetailsData.address==''}}" class="gray4"> 保密</text>
-        <label wx:else>
-          <text wx:if="{{ cardDetailsData.loglat!=''}}" bindtap="openAddress" data-loglat="{{cardDetailsData.loglat}}" data-name="{{cardDetailsData.address}}"> {{address}}<text class="green iconfont        icon-location"></text></text>
-          <text wx:else> {{address}}</text>
-        </label>
-      </view>
-      <view class="card-attritem">
-        <text class="label">备注</text>
-        <text wx:if="{{cardDetailsData.other==''}}" class="gray4"> 备注</text>
-        <text wx:else> {{other}}</text>
-      </view>
-    </view>
--->
       <view class="card-formitem">
         <view class="card-inputlabel">
            <textarea  placeholder="为这张名片写点儿备注..." placeholder-class="gray3" value="{{card.other}}" class="card-input" bindinput="bindinputOther" />
         </view>
       </view>
     <view class="butunits">
-      <!--
-      <view class="butunit"  bindtap='Sharecard'>
-        <view class="iconfont icon-share icon"></view>
-        <view>分享</view>
-      </view>-->
       <button class="butunit" open-type="share"  plain="true">
         <view class="iconfont icon-share icon"></view>
         <view class="text">分享名片</view>

@@ -28,6 +28,7 @@ Page({
       };
     })
   },
+
   //获取搜索数据
   getSearchData: function(e) {
     let k = e.detail.value;
@@ -71,7 +72,6 @@ Page({
       phoneNumber: e.target.dataset.id
     })
   },
-
 
   onLoad: function() {
     this.onShow();

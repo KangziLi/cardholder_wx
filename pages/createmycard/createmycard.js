@@ -46,6 +46,7 @@ Page({
     })
   },
 
+  //获取姓名输入
   bindinputName(e) {
     let mycard = this.data.mycard;
     mycard.name = e.detail.value;
@@ -53,6 +54,8 @@ Page({
       mycard: mycard
     });
   },
+
+  //获取职位输入
   bindinputTitle(e) {
     let mycard = this.data.mycard;
     mycard.title = e.detail.value;
@@ -60,6 +63,8 @@ Page({
       mycard: mycard
     });
   },
+
+  //获取手机输入
   bindinputMobile(e) {
     let mycard = this.data.mycard;
     mycard.phone = e.detail.value;
@@ -67,6 +72,8 @@ Page({
       mycard: mycard
     });
   },
+
+  //获取公司输入
   bindinputCompany(e) {
     let mycard = this.data.mycard;
     mycard.comp = e.detail.value;
@@ -74,6 +81,8 @@ Page({
       mycard: mycard
     });
   },
+
+  //获取备注输入
   bindinputOther(e) {
     let mycard = this.data.mycard;
     mycard.other = e.detail.value;
@@ -81,6 +90,8 @@ Page({
       mycard: mycard
     });
   },
+
+  //获取地址输入
   bindinputAddress(e) {
     let mycard = this.data.mycard;
     mycard.address = e.detail.value;
@@ -88,7 +99,6 @@ Page({
       mycard: mycard
     });
   },
-
 
   //选择图像进行识别
   bindChooseImg(e) {
@@ -144,6 +154,7 @@ Page({
       that.saveMycard();
     }
   },
+
   //保存名片信息
   saveMycard() {
     let mycard = this.data.mycard;
@@ -212,6 +223,7 @@ Page({
       })
     }
   },
+
   onLoad: function(options) {
     // 页面初始化 options为页面跳转所带来的参数
     var mycard = this.data.mycard;
@@ -231,12 +243,15 @@ Page({
   onReady: function() {
     // 页面渲染完成    
   },
+
   onShow: function() {
     // 页面显示
   },
+
   onHide: function() {
     // 页面隐藏
   },
+  
   onUnload: function() {
     // 页面关闭
   },

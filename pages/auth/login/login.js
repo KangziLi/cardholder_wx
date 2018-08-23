@@ -10,27 +10,27 @@ Page({
     code: '',
     loginErrorCount: 0
   },
-  onLoad: function (options) {
+  onLoad: function(options) {
     // 页面初始化 options为页面跳转所带来的参数
     // 页面渲染完成
 
   },
-  onReady: function () {
+  onReady: function() {
 
   },
-  onShow: function () {
+  onShow: function() {
     // 页面显示
   },
-  onHide: function () {
+  onHide: function() {
     // 页面隐藏
 
   },
-  onUnload: function () {
+  onUnload: function() {
     // 页面关闭
 
   },
-  wxLogin: function (e) {
-    if (e.detail.userInfo == undefined){
+  wxLogin: function(e) {
+    if (e.detail.userInfo == undefined) {
       app.globalData.hasLogin = false;
       util.showErrorToast('微信登录失败');
       return;
@@ -51,7 +51,7 @@ Page({
 
     });
   },
-  accountLogin: function () {
+  accountLogin: function() {
     var that = this;
 
     if (this.data.password.length < 1 || this.data.username.length < 1) {
@@ -73,26 +73,25 @@ Page({
       header: {
         'content-type': 'application/json'
       },
-      success: function (res) {
-        if (res.data.errno == 0){
+      success: function(res) {
+        if (res.data.errno == 0) {
           that.setData({
             loginErrorCount: 0
           });
           app.globalData.hasLogin = true;
           wx.setStorageSync('userInfo', res.data.data.userInfo);
           wx.setStorage({
-            key:"token",
+            key: "token",
             data: res.data.data.token,
-            success: function(){
+            success: function() {
               wx.switchTab({
                 url: '/pages/mycard/mycard'
               });
-              
+
             }
           });
 
-        }
-        else{
+        } else {
           that.setData({
             loginErrorCount: that.data.loginErrorCount + 1
           });
@@ -102,25 +101,25 @@ Page({
       }
     });
   },
-  bindUsernameInput: function (e) {
+  bindUsernameInput: function(e) {
 
     this.setData({
       username: e.detail.value
     });
   },
-  bindPasswordInput: function (e) {
+  bindPasswordInput: function(e) {
 
     this.setData({
       password: e.detail.value
     });
   },
-  bindCodeInput: function (e) {
+  bindCodeInput: function(e) {
 
     this.setData({
       code: e.detail.value
     });
   },
-  clearInput: function (e) {
+  clearInput: function(e) {
     switch (e.currentTarget.id) {
       case 'clear-username':
         this.setData({

@@ -30,7 +30,6 @@ App({
       console.log("this.globalData.hasLogin = false")
       this.globalData.hasLogin = false;
     });
-    console.log("this.globalData.hasLogin=" + this.globalData.hasLogin)
   },
   globalData: {
     hasLogin: false,

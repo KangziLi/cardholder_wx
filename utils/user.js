@@ -30,6 +30,7 @@ function login() {
   return new Promise(function (resolve, reject) {
     wx.login({
       success: function (res) {
+        console.log(res)
         if (res.code) {
           resolve(res);
         } else {
@@ -52,6 +53,7 @@ function loginByWeixin(userInfo) {
     return login().then((res) => {
       //登录远程服务器
       util.request(api.AuthLoginByWeixin, { code: res.code, userInfo: userInfo }, 'POST').then(res => {
+        console.log(res)
         if (res.errno === 0) {
           //存储用户信息
           wx.setStorageSync('userInfo', res.data.userInfo);

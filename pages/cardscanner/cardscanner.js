@@ -246,7 +246,7 @@ Page({
       })
       .on('DecodeStart', (imgPath) => {
         wx.showLoading({
-          title: '解析中',
+          title: 'OCR解析中',
           mask: true
         })
       })

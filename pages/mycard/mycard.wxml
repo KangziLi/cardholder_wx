@@ -1,14 +1,14 @@
 <import src="../template/template.wxml" />
 
-<view class="profile-info" bindtap="goLogin">
-  <image src="{{userInfo.avatarUrl}}" class="avatar"></image>
-  <view class="info">
-    <text class="name">{{userInfo.nickName}}</text>
-  </view>
+<view class="profile-info" >
+  <button open-type="getUserInfo" bindgetuserinfo="wxLogin" class="login">
+    <image src="{{userInfo.avatarUrl}}" class="avatar"></image>
+    <view class="info">{{userInfo.nickName}}</view>
+  </button>
+
   <!--<button class="logout" bindtap="exitLogin">退出登录</button>-->
 </view>
 <image class="infobackground" src='../../images/infobackground2.png'></image>
-
 
 <!--名片列表开始-->
 <view class="main bg-gray2">

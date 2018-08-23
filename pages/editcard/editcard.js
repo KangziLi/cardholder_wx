@@ -21,6 +21,8 @@ Page({
     id: 0,
     imageSrc: "",
   },
+
+  //获取姓名输入
   bindinputName(e) {
     let card = this.data.card;
     card.name = e.detail.value;
@@ -28,6 +30,8 @@ Page({
       card: card
     });
   },
+
+  //获取职位输入
   bindinputTitle(e) {
     let card = this.data.card;
     card.title = e.detail.value;
@@ -35,6 +39,8 @@ Page({
       card: card
     });
   },
+
+  //获取手机输入
   bindinputMobile(e) {
     let card = this.data.card;
     card.phone = e.detail.value;
@@ -42,6 +48,8 @@ Page({
       card: card
     });
   },
+
+  //获取公司输入
   bindinputCompany(e) {
     let card = this.data.card;
     card.comp = e.detail.value;
@@ -49,6 +57,8 @@ Page({
       card: card
     });
   },
+
+  //获取备注输入
   bindinputOther(e) {
     let card = this.data.card;
     card.other = e.detail.value;
@@ -56,6 +66,8 @@ Page({
       card: card
     });
   },
+
+  //获取地址输入
   bindinputAddress(e) {
     let card = this.data.card;
     card.address = e.detail.value;
@@ -63,6 +75,7 @@ Page({
       card: card
     });
   },
+
   //选择图像进行识别
   bindChooseImg(e) {
     wx.chooseImage({
@@ -77,6 +90,8 @@ Page({
       },
     })
   },
+
+  //拍照进行识别
   bindCamera(e) {
     wx.chooseImage({
       count: 1,
@@ -91,6 +106,7 @@ Page({
     })
   },
 
+  //保存校验
   savecardcheck() {
     let that = this;
     let card = this.data.card;
@@ -114,6 +130,8 @@ Page({
       that.savecard();
     }
   },
+
+  //添加至通讯录
   savecontact() {
     let that = this;
     var card = this.data.card;
@@ -268,6 +286,27 @@ Page({
       }
     }
   },
+
+  //打开地图
+  openAddress: function () {
+    var that = this
+    let card = that.data.card;
+    wx.chooseLocation({
+      success: function (res) {
+        card.address = res.address;
+        that.setData({
+          card: card
+        });
+      },
+      fail: function (res) {
+        // fail
+      },
+      complete: function (res) {
+        // complete
+      }
+    })
+  },
+
   onLoad: function(options) {
     // 页面初始化 options为页面跳转所带来的参数
     this.setData({
@@ -291,33 +330,16 @@ Page({
   onReady: function() {
     // 页面渲染完成    
   },
+
   onShow: function() {
     // 页面显示
   },
+
   onHide: function() {
     // 页面隐藏
   },
+
   onUnload: function() {
     // 页面关闭
   },
-
-  openAddress: function() {
-    var that = this
-    let card = that.data.card;
-    wx.chooseLocation({
-      success: function(res) {
-        card.address = res.address;
-        that.setData({
-          card: card
-        });
-      },
-      fail: function(res) {
-        // fail
-      },
-      complete: function(res) {
-        // complete
-      }
-    })
-  },
-
 })
